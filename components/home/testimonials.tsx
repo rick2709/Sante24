@@ -9,25 +9,25 @@ const testimonials = [
     id: 1,
     name: 'Chiedza Mutambo',
     role: 'Patient',
-    image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&q=80',
+    image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&q=80',
     rating: 5,
-    quote: 'Sante 24 provided exceptional care when my son needed emergency treatment. The doctors were professional and compassionate.',
+    quote: 'Sante 24 provided exceptional care when my son needed emergency treatment. The doctors were professional and compassionate. I felt truly supported the entire time.',
   },
   {
     id: 2,
     name: 'Tatenda Zvimba',
     role: 'Patient',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
     rating: 5,
-    quote: 'The best medical center in Southerton. I appreciate the 24-hour service and the friendly staff who always make me feel welcome.',
+    quote: 'The best medical center in Southerton. I appreciate the 24-hour service and the friendly staff who always make me feel welcome and respected.',
   },
   {
     id: 3,
     name: 'Rumbidzai Nhemachena',
     role: 'Patient',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80',
+    image: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=400&q=80',
     rating: 5,
-    quote: 'Dr. Chikwanda took excellent care of my children. I highly recommend Sante 24 for all families in Harare.',
+    quote: 'Dr. Chikwanda took excellent care of my children through their vaccinations. I highly recommend Sante 24 for all families in Harare — truly world-class care.',
   },
 ]
 
@@ -35,7 +35,6 @@ export function Testimonials() {
   return (
     <section className="py-20 md:py-28 bg-[#F7F9FC]">
       <div className="max-w-6xl mx-auto px-4 md:px-6">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -51,7 +50,6 @@ export function Testimonials() {
           </p>
         </motion.div>
 
-        {/* Testimonials Grid */}
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <motion.div
@@ -67,7 +65,7 @@ export function Testimonials() {
                   <Quote className="w-5 h-5 text-white" />
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-1 mb-4 mt-4">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-[#FFB800] text-[#FFB800]" />
@@ -81,10 +79,14 @@ export function Testimonials() {
               <div className="flex items-center gap-3">
                 <Image
                   src={testimonial.image}
-                  alt={testimonial.name}
+                  alt={`${testimonial.name} — Sante 24 patient`}
                   width={48}
                   height={48}
                   className="w-12 h-12 rounded-full object-cover"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src =
+                      'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&q=80'
+                  }}
                 />
                 <div>
                   <p className="font-heading font-bold text-[#003366]">{testimonial.name}</p>

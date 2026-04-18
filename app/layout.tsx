@@ -8,14 +8,15 @@ import { MobileNav } from '@/components/mobile-nav'
 import { CookieBanner } from '@/components/cookie-banner'
 import { BookingModal } from '@/components/booking-modal'
 import { BookingProvider } from '@/components/booking-context'
+import { WhatsAppFloat } from '@/components/whatsapp-float'
 
-const plusJakartaSans = Plus_Jakarta_Sans({ 
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-heading',
   display: 'swap',
 })
 
-const dmSans = DM_Sans({ 
+const dmSans = DM_Sans({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
@@ -23,7 +24,7 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: 'Sante 24 Medical Center | 24/7 Healthcare in Harare, Zimbabwe',
-  description: 'Comprehensive 24-hour medical care for every Harare family. Emergency care, specialist doctors, maternal health, paediatrics, and more at Southerton, Harare.',
+  description: 'Comprehensive 24-hour medical care for every Harare family. Emergency care, specialist doctors, maternal health, paediatrics, and more at 12 Remembrance Drive, Southerton, Harare.',
   keywords: ['medical center', 'Harare', 'Zimbabwe', '24/7 healthcare', 'emergency care', 'doctors', 'Southerton'],
   authors: [{ name: 'Sante 24 Medical Center' }],
   openGraph: {
@@ -56,6 +57,7 @@ export default function RootLayout({
           <Footer />
           <MobileNav />
           <BookingModal />
+          <WhatsAppFloat />
           <CookieBanner />
         </BookingProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}

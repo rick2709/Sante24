@@ -54,21 +54,21 @@ const doctors = [
     name: 'Dr. Tendai Moyo',
     specialty: 'General Practitioner',
     experience: '12 years',
-    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80',
   },
   {
     id: 'dr-chikwanda',
     name: 'Dr. Rudo Chikwanda',
     specialty: 'Paediatrician',
     experience: '8 years',
-    image: 'https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1551884831-bbf3cdc6469e?w=400&q=80',
   },
   {
     id: 'dr-mutasa',
     name: 'Dr. Farai Mutasa',
     specialty: 'Emergency Medicine',
     experience: '15 years',
-    image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80',
   },
 ]
 
@@ -108,13 +108,13 @@ export default function AboutPage() {
                 Our Mission
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                At Sante 24, our mission is to provide accessible, high-quality healthcare to every family in Harare. 
-                We believe that excellent medical care should be available whenever you need it, which is why we operate 
+                At Sante 24, our mission is to provide accessible, high-quality healthcare to every family in Harare.
+                We believe that excellent medical care should be available whenever you need it, which is why we operate
                 24 hours a day, 7 days a week.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Founded with a vision to serve the Southerton community and surrounding areas, we have grown to become 
-                a trusted healthcare partner for thousands of families. Our commitment to compassionate care and medical 
+                Founded with a vision to serve the Southerton community and surrounding areas, we have grown to become
+                a trusted healthcare partner for thousands of families. Our commitment to compassionate care and medical
                 excellence drives everything we do.
               </p>
             </motion.div>
@@ -127,11 +127,15 @@ export default function AboutPage() {
             >
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1b89?w=600&q=80"
-                  alt="African medical team providing care"
-                  width={600}
-                  height={450}
+                  src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=900&q=80"
+                  alt="African medical team at Sante 24 Medical Center"
+                  width={900}
+                  height={600}
                   className="w-full h-[350px] md:h-[400px] object-cover"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src =
+                      'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80'
+                  }}
                 />
               </div>
             </motion.div>
@@ -153,15 +157,15 @@ export default function AboutPage() {
               Our Story
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Sante 24 was established in 2015 by a group of dedicated healthcare professionals who recognized 
-              the need for reliable, round-the-clock medical services in Southerton and the greater Harare area. 
-              What started as a small clinic has grown into a comprehensive medical center, serving over 10,000 
+              Sante 24 was established in 2015 by a group of dedicated healthcare professionals who recognized
+              the need for reliable, round-the-clock medical services in Southerton and the greater Harare area.
+              What started as a small clinic has grown into a comprehensive medical center, serving over 10,000
               patients annually.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Our name, &quot;Sante,&quot; means &quot;health&quot; in French, reflecting our core commitment to the well-being 
-              of our community. The &quot;24&quot; represents our promise to be there for you every hour of every day. 
-              Today, we continue to expand our services and facilities to better serve the healthcare needs of 
+              Our name, &quot;Sante,&quot; means &quot;health&quot; in French, reflecting our core commitment to the well-being
+              of our community. The &quot;24&quot; represents our promise to be there for you every hour of every day.
+              Today, we continue to expand our services and facilities to better serve the healthcare needs of
               Zimbabwean families.
             </p>
           </motion.div>
@@ -241,10 +245,14 @@ export default function AboutPage() {
                 <div className="relative rounded-2xl overflow-hidden mb-4">
                   <Image
                     src={doctor.image}
-                    alt={doctor.name}
+                    alt={`${doctor.name} — ${doctor.specialty} at Sante 24`}
                     width={400}
                     height={450}
                     className="w-full h-[300px] object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src =
+                        'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80'
+                    }}
                   />
                 </div>
                 <h3 className="font-heading font-bold text-xl text-[#003366]">{doctor.name}</h3>
@@ -261,7 +269,7 @@ export default function AboutPage() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-12 text-center"
           >
-            <Button 
+            <Button
               asChild
               size="lg"
               className="bg-[#003366] hover:bg-[#004d80] text-white rounded-full px-8"

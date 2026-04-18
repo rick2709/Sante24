@@ -22,12 +22,12 @@ const blogPosts = [
     id: 1,
     title: 'Understanding Malaria Prevention in Urban Harare',
     excerpt: 'Essential tips for protecting your family from malaria during the rainy season. Learn about mosquito control and preventive measures.',
-    content: 'Full article content...',
     category: 'Emergency Tips',
     image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80',
+    imageAlt: 'Medical professional reviewing health data in a clinic',
     author: {
       name: 'Dr. Tendai Moyo',
-      image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=100&q=80',
+      image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=100&q=80',
     },
     date: 'April 10, 2025',
     readTime: '5 min read',
@@ -37,12 +37,12 @@ const blogPosts = [
     id: 2,
     title: '5 Signs You Should Visit Emergency Care Immediately',
     excerpt: 'Know when to seek urgent medical attention and what symptoms require immediate care at our 24-hour facility.',
-    content: 'Full article content...',
     category: 'Emergency Tips',
-    image: 'https://images.unsplash.com/photo-1631815588090-d4bfec5b1b89?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800&q=80',
+    imageAlt: 'African family receiving health guidance from a doctor',
     author: {
       name: 'Dr. Farai Mutasa',
-      image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=100&q=80',
+      image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=100&q=80',
     },
     date: 'April 8, 2025',
     readTime: '4 min read',
@@ -52,12 +52,12 @@ const blogPosts = [
     id: 3,
     title: 'Maternal Health: What Every Zimbabwean Mother Should Know',
     excerpt: 'A comprehensive guide to prenatal care and healthy pregnancy practices for expecting mothers in Zimbabwe.',
-    content: 'Full article content...',
     category: 'Maternal Care',
-    image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=800&q=80',
+    imageAlt: 'African woman in wellness and maternal health care setting',
     author: {
       name: 'Dr. Nyasha Dziva',
-      image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=100&q=80',
+      image: 'https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?w=100&q=80',
     },
     date: 'April 5, 2025',
     readTime: '7 min read',
@@ -67,12 +67,12 @@ const blogPosts = [
     id: 4,
     title: 'Managing Diabetes in the Zimbabwean Diet',
     excerpt: 'Practical dietary advice for managing diabetes while enjoying traditional Zimbabwean foods.',
-    content: 'Full article content...',
     category: 'Nutrition',
-    image: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80',
+    imageAlt: 'Laboratory and diagnostic testing equipment at Sante 24',
     author: {
       name: 'Dr. Tendai Moyo',
-      image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=100&q=80',
+      image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=100&q=80',
     },
     date: 'April 2, 2025',
     readTime: '6 min read',
@@ -82,12 +82,12 @@ const blogPosts = [
     id: 5,
     title: "Children's Vaccinations: A Parent's Complete Guide",
     excerpt: 'Everything parents need to know about childhood immunizations and the vaccination schedule in Zimbabwe.',
-    content: 'Full article content...',
     category: 'Paediatrics',
-    image: 'https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=800&q=80',
+    imageAlt: 'African child receiving paediatric care at a clinic',
     author: {
       name: 'Dr. Rudo Chikwanda',
-      image: 'https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=100&q=80',
+      image: 'https://images.unsplash.com/photo-1551884831-bbf3cdc6469e?w=100&q=80',
     },
     date: 'March 28, 2025',
     readTime: '8 min read',
@@ -97,12 +97,12 @@ const blogPosts = [
     id: 6,
     title: 'Mental Health: Breaking the Stigma in Our Communities',
     excerpt: 'Why mental health matters and how we can create more supportive communities for those struggling.',
-    content: 'Full article content...',
     category: 'Mental Health',
-    image: 'https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80',
+    imageAlt: 'African man in a mental wellness support session',
     author: {
       name: 'Dr. Tendai Moyo',
-      image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=100&q=80',
+      image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=100&q=80',
     },
     date: 'March 25, 2025',
     readTime: '5 min read',
@@ -125,9 +125,8 @@ export default function BlogPage() {
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle newsletter signup
     setEmail('')
-    alert('Thank you for subscribing!')
+    alert('Thank you for subscribing to Sante 24 health updates!')
   }
 
   return (
@@ -191,10 +190,14 @@ export default function BlogPage() {
                     <div className="relative rounded-2xl overflow-hidden mb-6">
                       <Image
                         src={featuredPost.image}
-                        alt={featuredPost.title}
+                        alt={featuredPost.imageAlt}
                         width={800}
                         height={450}
                         className="w-full h-[300px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src =
+                            'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80'
+                        }}
                       />
                       <div className="absolute top-4 left-4">
                         <span className="px-4 py-1.5 bg-[#FF6B6B] text-white text-sm font-medium rounded-full">
@@ -223,6 +226,10 @@ export default function BlogPage() {
                         width={40}
                         height={40}
                         className="w-10 h-10 rounded-full object-cover"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src =
+                            'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&q=80'
+                        }}
                       />
                       <span className="text-[#003366] font-medium text-sm">{featuredPost.author.name}</span>
                     </div>
@@ -245,10 +252,15 @@ export default function BlogPage() {
                       <div className="relative rounded-2xl overflow-hidden mb-4 border-2 border-transparent group-hover:border-[#00B4A6] transition-colors">
                         <Image
                           src={post.image}
-                          alt={post.title}
+                          alt={post.imageAlt}
                           width={400}
                           height={250}
+                          loading="lazy"
                           className="w-full h-[200px] object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src =
+                              'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80'
+                          }}
                         />
                         <div className="absolute top-3 left-3">
                           <span className="px-3 py-1 bg-[#00B4A6] text-white text-xs font-medium rounded-full">
@@ -268,6 +280,10 @@ export default function BlogPage() {
                             width={24}
                             height={24}
                             className="w-6 h-6 rounded-full object-cover"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).src =
+                                'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&q=80'
+                            }}
                           />
                           <span className="text-muted-foreground text-xs">{post.author.name}</span>
                         </div>
@@ -291,7 +307,7 @@ export default function BlogPage() {
               )}
             </div>
 
-            {/* Sidebar - Desktop Only */}
+            {/* Sidebar — Desktop Only */}
             <aside className="hidden lg:block">
               <div className="sticky top-40 space-y-8">
                 {/* Recent Posts */}
@@ -302,10 +318,15 @@ export default function BlogPage() {
                       <Link key={post.id} href="#" className="flex gap-3 group">
                         <Image
                           src={post.image}
-                          alt={post.title}
+                          alt={post.imageAlt}
                           width={80}
                           height={60}
+                          loading="lazy"
                           className="w-20 h-16 rounded-lg object-cover flex-shrink-0"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src =
+                              'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80'
+                          }}
                         />
                         <div>
                           <h4 className="font-medium text-sm text-[#003366] group-hover:text-[#00B4A6] transition-colors line-clamp-2">
@@ -341,7 +362,7 @@ export default function BlogPage() {
                     <Mail className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="font-heading font-bold text-lg text-white mb-2">Subscribe to Newsletter</h3>
-                  <p className="text-white/70 text-sm mb-4">Get health tips delivered to your inbox.</p>
+                  <p className="text-white/70 text-sm mb-4">Get health tips delivered to your inbox weekly.</p>
                   <form onSubmit={handleNewsletterSubmit} className="space-y-3">
                     <Input
                       type="email"
@@ -351,7 +372,7 @@ export default function BlogPage() {
                       required
                       className="bg-white/10 border-white/20 text-white placeholder:text-white/50 rounded-xl"
                     />
-                    <Button 
+                    <Button
                       type="submit"
                       className="w-full bg-[#00B4A6] hover:bg-[#009688] text-white rounded-full"
                     >

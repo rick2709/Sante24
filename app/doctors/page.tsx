@@ -22,8 +22,8 @@ const doctors = [
     specialty: 'General Practitioner',
     experience: '12 years',
     qualifications: 'MBChB (UZ), MPH',
-    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80',
-    bio: 'Dr. Tendai Moyo is a highly experienced general practitioner with over 12 years of experience in primary healthcare. She completed her medical degree at the University of Zimbabwe and holds a Master\'s in Public Health. Dr. Moyo is known for her compassionate approach and commitment to preventive care.',
+    image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80',
+    bio: 'Dr. Tendai Moyo is a highly experienced general practitioner with over 12 years in primary healthcare. She completed her medical degree at the University of Zimbabwe and holds a Master\'s in Public Health. Dr. Moyo is known for her compassionate approach and commitment to preventive care for Harare families.',
     specializations: ['Chronic Disease Management', 'Preventive Care', 'Health Screenings'],
     languages: ['English', 'Shona'],
   },
@@ -33,8 +33,8 @@ const doctors = [
     specialty: 'Paediatrician',
     experience: '8 years',
     qualifications: 'MBChB (UZ), DCH',
-    image: 'https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=400&q=80',
-    bio: 'Dr. Rudo Chikwanda specializes in paediatric care, with a focus on child development and childhood illnesses. She has dedicated her career to ensuring children in Harare receive the best possible healthcare. Her gentle demeanor makes her a favorite among young patients.',
+    image: 'https://images.unsplash.com/photo-1551884831-bbf3cdc6469e?w=600&q=80',
+    bio: 'Dr. Rudo Chikwanda specializes in paediatric care, with a focus on child development and childhood illnesses. She has dedicated her career to ensuring children in Harare receive the best possible healthcare. Her gentle demeanor makes her a favourite among young patients and their parents.',
     specializations: ['Child Development', 'Vaccination Programs', 'Childhood Illnesses'],
     languages: ['English', 'Shona', 'Ndebele'],
   },
@@ -44,8 +44,8 @@ const doctors = [
     specialty: 'Emergency Medicine',
     experience: '15 years',
     qualifications: 'MBChB (UZ), FCEM',
-    image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&q=80',
-    bio: 'Dr. Farai Mutasa leads our emergency department with 15 years of experience in acute care and trauma medicine. He has trained in emergency medicine both locally and internationally, bringing world-class expertise to Sante 24. His quick decision-making has saved countless lives.',
+    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80',
+    bio: 'Dr. Farai Mutasa leads our emergency department with 15 years of experience in acute care and trauma medicine. He has trained in emergency medicine both locally and internationally, bringing world-class expertise to Sante 24. His quick decision-making has saved countless lives across Zimbabwe.',
     specializations: ['Trauma Care', 'Cardiac Emergencies', 'Critical Care'],
     languages: ['English', 'Shona'],
   },
@@ -55,8 +55,8 @@ const doctors = [
     specialty: 'Cardiologist',
     experience: '10 years',
     qualifications: 'MBChB (UZ), MMed (Cardiology)',
-    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80',
-    bio: 'Dr. Simba Ncube is our specialist in cardiovascular health. With advanced training in cardiology, he provides comprehensive care for heart conditions, from prevention to treatment. He is passionate about educating patients on heart-healthy lifestyles.',
+    image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=80',
+    bio: 'Dr. Simba Ncube is our specialist in cardiovascular health. With advanced training in cardiology, he provides comprehensive care for heart conditions, from prevention to treatment. He is passionate about educating patients on heart-healthy lifestyles and reducing cardiovascular disease in Zimbabwe.',
     specializations: ['Heart Disease Prevention', 'ECG & Stress Testing', 'Hypertension Management'],
     languages: ['English', 'Ndebele', 'Shona'],
   },
@@ -66,8 +66,8 @@ const doctors = [
     specialty: 'Obstetrician & Gynaecologist',
     experience: '9 years',
     qualifications: 'MBChB (UZ), MMed (O&G)',
-    image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80',
-    bio: 'Dr. Nyasha Dziva provides expert care in women\'s health and maternal care. She is passionate about supporting women through every stage of life, from adolescence through pregnancy to menopause. Her caring approach has helped hundreds of mothers deliver safely.',
+    image: 'https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?w=600&q=80',
+    bio: 'Dr. Nyasha Dziva provides expert care in women\'s health and maternal medicine. She is passionate about supporting women through every stage of life, from adolescence through pregnancy to menopause. Her caring approach has helped hundreds of mothers deliver safely at Sante 24.',
     specializations: ['Prenatal Care', 'High-Risk Pregnancies', 'Women\'s Health'],
     languages: ['English', 'Shona'],
   },
@@ -77,7 +77,7 @@ const doctors = [
     specialty: 'Dentist',
     experience: '7 years',
     qualifications: 'BDS (UZ)',
-    image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80',
     bio: 'Dr. Tafadzwa Mapfumo heads our dental department, providing comprehensive oral health services. He believes that a healthy smile contributes to overall well-being and works to make dental visits a positive experience for all patients, especially those with dental anxiety.',
     specializations: ['General Dentistry', 'Restorative Procedures', 'Oral Health Education'],
     languages: ['English', 'Shona'],
@@ -181,9 +181,13 @@ export default function DoctorsPage() {
                     <div className="relative h-[280px]">
                       <Image
                         src={doctor.image}
-                        alt={doctor.name}
+                        alt={`${doctor.name} — ${doctor.specialty} at Sante 24 Medical Center`}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src =
+                            'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80'
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#003366]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
@@ -193,7 +197,7 @@ export default function DoctorsPage() {
                       <p className="text-muted-foreground text-sm mb-3">{doctor.qualifications}</p>
                       <div className="flex items-center justify-between">
                         <span className="text-muted-foreground text-sm">{doctor.experience} experience</span>
-                        <Button 
+                        <Button
                           size="sm"
                           className="bg-[#00B4A6] hover:bg-[#009688] text-white rounded-full text-xs px-4"
                           onClick={(e) => {
@@ -213,7 +217,7 @@ export default function DoctorsPage() {
         </div>
       </section>
 
-      {/* Doctor Modal */}
+      {/* Doctor Detail Modal */}
       <AnimatePresence>
         {selectedDoctor && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
@@ -224,7 +228,7 @@ export default function DoctorsPage() {
               onClick={() => setSelectedDoctor(null)}
               className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             />
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -234,7 +238,7 @@ export default function DoctorsPage() {
             >
               <button
                 onClick={() => setSelectedDoctor(null)}
-                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/10 flex items-center justify-center hover:bg-black/20 transition-colors z-10"
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/20 flex items-center justify-center hover:bg-black/40 transition-colors z-10"
               >
                 <X className="w-5 h-5 text-white" />
               </button>
@@ -242,9 +246,13 @@ export default function DoctorsPage() {
               <div className="relative h-[250px] md:h-[300px]">
                 <Image
                   src={selectedDoctor.image}
-                  alt={selectedDoctor.name}
+                  alt={`${selectedDoctor.name} — ${selectedDoctor.specialty}`}
                   fill
                   className="object-cover"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src =
+                      'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80'
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#003366] to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
@@ -265,15 +273,13 @@ export default function DoctorsPage() {
                   </div>
                 </div>
 
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  {selectedDoctor.bio}
-                </p>
+                <p className="text-muted-foreground leading-relaxed mb-6">{selectedDoctor.bio}</p>
 
                 <div className="mb-6">
                   <h3 className="font-heading font-bold text-[#003366] mb-3">Areas of Expertise</h3>
                   <div className="flex flex-wrap gap-2">
                     {selectedDoctor.specializations.map((spec) => (
-                      <span 
+                      <span
                         key={spec}
                         className="px-3 py-1 bg-[#00B4A6]/10 text-[#00B4A6] rounded-full text-sm font-medium"
                       >
@@ -288,7 +294,7 @@ export default function DoctorsPage() {
                   <p className="text-muted-foreground">{selectedDoctor.languages.join(', ')}</p>
                 </div>
 
-                <Button 
+                <Button
                   onClick={() => {
                     setSelectedDoctor(null)
                     openBooking(selectedDoctor.id)
@@ -296,7 +302,7 @@ export default function DoctorsPage() {
                   className="w-full bg-[#00B4A6] hover:bg-[#009688] text-white rounded-full py-6"
                 >
                   <Calendar className="w-5 h-5 mr-2" />
-                  Book with {selectedDoctor.name.split(' ')[0]}
+                  Book with {selectedDoctor.name.split(' ').slice(0, 2).join(' ')}
                 </Button>
               </div>
             </motion.div>

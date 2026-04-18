@@ -172,3 +172,27 @@
   background: var(--teal);
   border-radius: 2px;
 }
+
+/* Hide scrollbar for horizontal scroll containers */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* WhatsApp float button bottom positioning */
+@media (min-width: 768px) {
+  :root { --wa-bottom: 24px; }
+}
+
+/* WhatsApp pulse animation */
+@keyframes wa-pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.animate-wa-pulse {
+  animation: wa-pulse 2s ease-out infinite;
+}
+
+/* ECG scroll animation */
+@keyframes ecg-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-34px); }
+}

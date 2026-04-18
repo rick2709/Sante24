@@ -12,27 +12,30 @@ const blogPosts = [
     title: 'Understanding Malaria Prevention in Urban Harare',
     excerpt: 'Essential tips for protecting your family from malaria during the rainy season.',
     category: 'Health Tips',
-    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80',
+    imageAlt: 'Medical professional reviewing health data',
     date: 'April 10, 2025',
     readTime: '5 min read',
   },
   {
     id: 2,
-    title: '5 Signs You Should Visit Emergency Care Immediately',
-    excerpt: 'Know when to seek urgent medical attention and what symptoms require immediate care.',
-    category: 'Emergency',
-    image: 'https://images.unsplash.com/photo-1631815588090-d4bfec5b1b89?w=600&q=80',
-    date: 'April 8, 2025',
-    readTime: '4 min read',
-  },
-  {
-    id: 3,
     title: 'Maternal Health: What Every Zimbabwean Mother Should Know',
     excerpt: 'A comprehensive guide to prenatal care and healthy pregnancy practices.',
     category: 'Maternal Care',
-    image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=800&q=80',
+    imageAlt: 'African woman in a maternal wellness setting',
     date: 'April 5, 2025',
     readTime: '7 min read',
+  },
+  {
+    id: 3,
+    title: 'Mental Health: Breaking the Stigma in Our Communities',
+    excerpt: 'Why mental health matters and how we can create more supportive communities.',
+    category: 'Mental Health',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80',
+    imageAlt: 'African man in a mental wellness support session',
+    date: 'March 25, 2025',
+    readTime: '5 min read',
   },
 ]
 
@@ -40,7 +43,6 @@ export function BlogPreview() {
   return (
     <section className="py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 md:px-6">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -56,7 +58,6 @@ export function BlogPreview() {
           </p>
         </motion.div>
 
-        {/* Blog Grid */}
         <div className="grid md:grid-cols-3 gap-8">
           {blogPosts.map((post, index) => (
             <motion.article
@@ -71,10 +72,15 @@ export function BlogPreview() {
                 <div className="relative rounded-2xl overflow-hidden mb-4">
                   <Image
                     src={post.image}
-                    alt={post.title}
-                    width={400}
+                    alt={post.imageAlt}
+                    width={800}
                     height={250}
+                    loading="lazy"
                     className="w-full h-[200px] object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src =
+                        'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80'
+                    }}
                   />
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 bg-[#00B4A6] text-white text-xs font-medium rounded-full">
@@ -98,7 +104,6 @@ export function BlogPreview() {
           ))}
         </div>
 
-        {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -106,7 +111,7 @@ export function BlogPreview() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-12 text-center"
         >
-          <Button 
+          <Button
             asChild
             size="lg"
             variant="outline"
