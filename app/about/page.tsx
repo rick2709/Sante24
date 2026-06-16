@@ -2,73 +2,63 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { Heart, Award, Users, Shield, CheckCircle2, ArrowRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
+import {
+  Shield, Heart, Award, Target, Briefcase, Home, Users,
+  ThumbsUp, Clock, TrendingUp, CheckCircle2
+} from 'lucide-react'
 
 const values = [
-  {
-    icon: Heart,
-    title: 'Compassion',
-    description: 'We treat every patient with empathy and understanding, recognizing that healthcare is deeply personal.',
-  },
-  {
-    icon: Award,
-    title: 'Excellence',
-    description: 'We strive for the highest standards in medical care, continuously improving our services and expertise.',
-  },
-  {
-    icon: Users,
-    title: 'Accessibility',
-    description: 'Quality healthcare should be available to all. We provide 24/7 service to ensure care when you need it.',
-  },
-  {
-    icon: Shield,
-    title: 'Integrity',
-    description: 'We maintain the highest ethical standards, ensuring transparency and trust in all our interactions.',
-  },
+  { icon: Shield, title: 'Integrity', description: 'We uphold the highest ethical standards in all our medical practice and patient interactions.' },
+  { icon: Heart, title: 'Respect', description: 'Every patient and staff member is treated with dignity and compassion, regardless of circumstances.' },
+  { icon: Award, title: 'Excellence', description: 'We continuously strive to improve the quality of care we deliver to every patient.' },
+  { icon: Target, title: 'Commitment', description: 'Dedicated to our patients\' wellbeing, we go above and beyond to deliver the care they need.' },
+  { icon: Briefcase, title: 'Professionalism', description: 'Our medical team maintains the highest professional standards at all times.' },
+  { icon: Home, title: 'Homeliness', description: 'We create a welcoming, warm environment where patients feel safe and cared for.' },
+  { icon: Users, title: 'Team Work', description: 'Our multidisciplinary team collaborates to deliver the best possible patient outcomes.' },
+  { icon: ThumbsUp, title: 'Good Customer Care', description: 'We prioritise patient satisfaction, ensuring every visit is a positive experience.' },
+  { icon: Clock, title: 'Time Consciousness', description: 'We respect your time with efficient service and minimal unnecessary waiting.' },
+  { icon: TrendingUp, title: 'Continuous Improvement', description: 'We invest in training, technology, and processes to keep raising the standard of care.' },
 ]
 
 const whyChooseUs = [
   {
-    title: '24/7 Emergency Care',
-    description: 'Our emergency department never closes. Whatever the hour, our dedicated team is ready to provide immediate care.',
+    title: 'Open 24 Hours, 365 Days a Year',
+    description: 'Our doors never close. Whether it is a weekday morning or a public holiday midnight, our team is on duty and ready to help.',
   },
   {
-    title: 'Experienced Specialists',
-    description: 'Our team of doctors brings decades of combined experience across various medical specialties.',
+    title: 'Licensed & Fully Accredited',
+    description: 'We are licensed by the Health Professions Authority of Zimbabwe and registered with the Medical and Dental Practitioners\' Council of Zimbabwe.',
   },
   {
-    title: 'Modern Facilities',
-    description: 'We invest in the latest medical technology and maintain a clean, comfortable environment for all patients.',
+    title: 'Two Specialised Centres',
+    description: 'Santé 24 houses both a general medical centre and a dedicated maternity hospital under one roof — covering every stage of life.',
   },
   {
-    title: 'Patient-Centered Care',
-    description: 'Every treatment plan is tailored to your unique needs, ensuring personalized attention and better outcomes.',
+    title: 'Modern, Fully Equipped Facility',
+    description: 'From our operating theatre and procedure rooms to our in-house laboratory and ultrasound suite, we are equipped to handle a wide range of medical needs.',
   },
 ]
 
-const doctors = [
+const facilityImages = [
   {
-    id: 'dr-moyo',
-    name: 'Dr. Tendai Moyo',
-    specialty: 'General Practitioner',
-    experience: '12 years',
-    image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80',
+    src: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&q=80',
+    alt: 'Reception area of Santé 24hr Medical Centre, Southerton, Harare',
+    label: 'Reception',
   },
   {
-    id: 'dr-chikwanda',
-    name: 'Dr. Rudo Chikwanda',
-    specialty: 'Paediatrician',
-    experience: '8 years',
-    image: 'https://images.unsplash.com/photo-1551884831-bbf3cdc6469e?w=400&q=80',
+    src: 'https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=600&q=80',
+    alt: 'Observation and procedure room at Santé 24hr Medical Centre',
+    label: 'Procedure & Observation Room',
   },
   {
-    id: 'dr-mutasa',
-    name: 'Dr. Farai Mutasa',
-    specialty: 'Emergency Medicine',
-    experience: '15 years',
-    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80',
+    src: 'https://images.unsplash.com/photo-1578496479914-7ef3b0193be3?w=600&q=80',
+    alt: 'Operating theatre at Santé 24hr Medical Centre, Harare',
+    label: 'Operating Theatre',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1581056771107-24ca5f033842?w=600&q=80',
+    alt: 'Ultrasound scanning room at Santé 24 Maternity Hospital',
+    label: 'Ultrasound Suite',
   },
 ]
 
@@ -85,16 +75,16 @@ export default function AboutPage() {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
-              About Sante 24
+              About Santé 24
             </h1>
             <p className="text-white/80 text-lg max-w-2xl mx-auto">
-              Dedicated to providing exceptional healthcare to the Harare community, around the clock.
+              Licensed, accredited, and proudly serving the Harare community since 19 October 2016.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Mission Section */}
+      {/* Welcome / About */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -105,17 +95,13 @@ export default function AboutPage() {
               transition={{ duration: 0.5 }}
             >
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#003366] animated-underline mb-6">
-                Our Mission
+                Who We Are
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                At Sante 24, our mission is to provide accessible, high-quality healthcare to every family in Harare.
-                We believe that excellent medical care should be available whenever you need it, which is why we operate
-                24 hours a day, 7 days a week.
+                Santé 24hr Medical Centre is licensed by the Health Professions Authority and the Medical and Dental Practitioners&apos; Council of Zimbabwe. Located at Shop 5, Southerton Shopping Centre on St Johns Way, Southerton, we have proudly served the Harare community since opening on 19 October 2016.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Founded with a vision to serve the Southerton community and surrounding areas, we have grown to become
-                a trusted healthcare partner for thousands of families. Our commitment to compassionate care and medical
-                excellence drives everything we do.
+                Sante 24 is a fully kitted 24-hour medical centre featuring doctor consultation rooms, procedure rooms, and observation wards — providing round-the-clock care when you need it most. Under the same roof sits our dedicated Santé 24 Maternity Hospital, offering complete maternity services from antenatal care through to postnatal recovery.
               </p>
             </motion.div>
             <motion.div
@@ -128,7 +114,7 @@ export default function AboutPage() {
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <Image
                   src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=900&q=80"
-                  alt="African medical team at Sante 24 Medical Center"
+                  alt="Medical team at Santé 24hr Medical Centre, Southerton, Harare"
                   width={900}
                   height={600}
                   className="w-full h-[350px] md:h-[400px] object-cover"
@@ -143,36 +129,71 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Story */}
-      <section className="py-20 bg-[#F7F9FC]">
+      {/* Trust Badges */}
+      <section className="py-10 bg-[#003366]">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#003366] mb-6">
-              Our Story
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              Sante 24 was established in 2015 by a group of dedicated healthcare professionals who recognized
-              the need for reliable, round-the-clock medical services in Southerton and the greater Harare area.
-              What started as a small clinic has grown into a comprehensive medical center, serving over 10,000
-              patients annually.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Our name, &quot;Sante,&quot; means &quot;health&quot; in French, reflecting our core commitment to the well-being
-              of our community. The &quot;24&quot; represents our promise to be there for you every hour of every day.
-              Today, we continue to expand our services and facilities to better serve the healthcare needs of
-              Zimbabwean families.
-            </p>
-          </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+            {[
+              { label: 'Licensed by HPA Zimbabwe', sub: 'Health Professions Authority' },
+              { label: 'Registered with MDPCZ', sub: 'Medical & Dental Practitioners\' Council' },
+              { label: 'Operating Since 2016', sub: 'Opened 19 October 2016' },
+            ].map((badge) => (
+              <motion.div
+                key={badge.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="py-4"
+              >
+                <p className="font-heading font-bold text-white text-lg">{badge.label}</p>
+                <p className="text-white/60 text-sm mt-1">{badge.sub}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Core Values */}
+      {/* Vision & Mission */}
+      <section className="py-20 bg-[#F7F9FC]">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <div className="grid md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="bg-white rounded-2xl p-8 shadow-sm border border-border"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-[#00B4A6]/10 flex items-center justify-center mb-5">
+                <Target className="w-7 h-7 text-[#00B4A6]" />
+              </div>
+              <h3 className="text-2xl font-heading font-bold text-[#003366] mb-4">Our Vision</h3>
+              <p className="text-muted-foreground leading-relaxed italic">
+                &ldquo;To provide quality healthcare for the care, preservation and improvement of human life.&rdquo;
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-white rounded-2xl p-8 shadow-sm border border-border"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-[#003366]/10 flex items-center justify-center mb-5">
+                <Heart className="w-7 h-7 text-[#003366]" />
+              </div>
+              <h3 className="text-2xl font-heading font-bold text-[#003366] mb-4">Our Mission</h3>
+              <p className="text-muted-foreground leading-relaxed italic">
+                &ldquo;To provide comprehensive and friendly quality healthcare.&rdquo;
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Core Values — 10 items */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <motion.div
@@ -186,11 +207,11 @@ export default function AboutPage() {
               Our Core Values
             </h2>
             <p className="mt-6 text-muted-foreground max-w-2xl">
-              These principles guide every interaction and decision at Sante 24.
+              These ten principles guide every interaction and every decision at Santé 24.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {values.map((value, index) => {
               const Icon = value.icon
               return (
@@ -199,14 +220,14 @@ export default function AboutPage() {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="text-center p-6"
+                  transition={{ duration: 0.4, delay: index * 0.06 }}
+                  className="text-center p-5 bg-[#F7F9FC] rounded-2xl"
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-[#00B4A6]/10 flex items-center justify-center mx-auto mb-4">
-                    <Icon className="w-8 h-8 text-[#00B4A6]" />
+                  <div className="w-12 h-12 rounded-xl bg-[#00B4A6]/10 flex items-center justify-center mx-auto mb-3">
+                    <Icon className="w-6 h-6 text-[#00B4A6]" />
                   </div>
-                  <h3 className="font-heading font-bold text-xl text-[#003366] mb-2">{value.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{value.description}</p>
+                  <h3 className="font-heading font-bold text-base text-[#003366] mb-1">{value.title}</h3>
+                  <p className="text-muted-foreground text-xs leading-relaxed">{value.description}</p>
                 </motion.div>
               )
             })}
@@ -214,7 +235,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* Our Facility */}
       <section className="py-20 bg-[#F7F9FC]">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <motion.div
@@ -225,61 +246,40 @@ export default function AboutPage() {
             className="mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#003366] animated-underline">
-              Our Medical Team
+              Take a Look Inside Our Facility
             </h2>
             <p className="mt-6 text-muted-foreground max-w-2xl">
-              Meet some of the dedicated professionals who make Sante 24 a trusted healthcare provider.
+              Our fully equipped facility at Southerton Shopping Centre is designed to deliver comprehensive care in a clean, modern, welcoming environment.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {doctors.map((doctor, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {facilityImages.map((img, index) => (
               <motion.div
-                key={doctor.id}
+                key={img.label}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="group"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative group rounded-2xl overflow-hidden"
               >
-                <div className="relative rounded-2xl overflow-hidden mb-4">
-                  <Image
-                    src={doctor.image}
-                    alt={`${doctor.name} — ${doctor.specialty} at Sante 24`}
-                    width={400}
-                    height={450}
-                    className="w-full h-[300px] object-cover group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src =
-                        'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80'
-                    }}
-                  />
-                </div>
-                <h3 className="font-heading font-bold text-xl text-[#003366]">{doctor.name}</h3>
-                <p className="text-[#00B4A6] font-medium text-sm">{doctor.specialty}</p>
-                <p className="text-muted-foreground text-sm mt-1">{doctor.experience} of experience</p>
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  width={600}
+                  height={450}
+                  loading="lazy"
+                  className="w-full h-[200px] md:h-[240px] object-cover group-hover:scale-105 transition-transform duration-500"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src =
+                      'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=600&q=80'
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#003366]/70 to-transparent" />
+                <p className="absolute bottom-3 left-3 text-white font-medium text-sm">{img.label}</p>
               </motion.div>
             ))}
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-12 text-center"
-          >
-            <Button
-              asChild
-              size="lg"
-              className="bg-[#003366] hover:bg-[#004d80] text-white rounded-full px-8"
-            >
-              <Link href="/doctors">
-                View All Doctors
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-            </Button>
-          </motion.div>
         </div>
       </section>
 
@@ -294,7 +294,7 @@ export default function AboutPage() {
             className="mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-heading font-bold text-[#003366] animated-underline">
-              Why Choose Sante 24
+              Why Choose Santé 24
             </h2>
           </motion.div>
 

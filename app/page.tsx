@@ -4,7 +4,7 @@ import { HeroSection } from '@/components/home/hero-section'
 import { QuickAccessCards } from '@/components/home/quick-access-cards'
 import { StatsBanner } from '@/components/home/stats-banner'
 import { ServicesSection } from '@/components/home/services-section'
-import { DoctorsPreview } from '@/components/home/doctors-preview'
+import { TwoCentres } from '@/components/home/two-centres'
 import { HealthTips } from '@/components/home/health-tips'
 import { BlogPreview } from '@/components/home/blog-preview'
 import { Testimonials } from '@/components/home/testimonials'
@@ -17,7 +17,7 @@ export default function HomePage() {
       <QuickAccessCards />
       <StatsBanner />
       <ServicesSection />
-      <DoctorsPreview />
+      <TwoCentres />
       <HealthTips />
       <BlogPreview />
       <Testimonials />

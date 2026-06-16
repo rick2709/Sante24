@@ -3,209 +3,214 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import {
-  Stethoscope,
   Siren,
+  FlaskConical,
+  Scissors,
+  UserCheck,
   Baby,
   HeartPulse,
-  Brain,
-  Smile,
-  FlaskConical,
-  Pill,
-  Activity,
-  Salad,
+  Stethoscope,
+  ScanLine,
+  Users,
 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { useBooking } from '@/components/booking-context'
 
-const services = [
+function WhatsAppIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+    </svg>
+  )
+}
+
+const medicalServices = [
   {
-    id: 'general',
-    icon: Stethoscope,
-    name: 'General Medicine',
-    shortDesc: 'Comprehensive primary care for all ages',
-    image: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&q=80',
-    imageAlt: 'African doctor consulting a patient in general medicine',
-    description:
-      'Our general medicine department provides comprehensive primary care for patients of all ages. From routine check-ups and chronic disease management to acute illness treatment, our experienced GPs are your first point of contact for all health concerns. We believe in treating the whole person, not just the symptom. Our team works closely with patients to build long-term care plans that support lasting well-being.',
-    features: [
-      'Routine health check-ups',
-      'Chronic disease management (hypertension, diabetes)',
-      'Acute illness consultation',
-      'Prescription & medication management',
-      'Referrals to specialists',
-      'Health screening programs',
-    ],
-  },
-  {
-    id: 'emergency',
+    id: 'emergency-general',
     icon: Siren,
-    name: 'Emergency & Urgent Care (24/7)',
-    shortDesc: '24/7 emergency medical services',
+    name: '24-Hour Emergency & General Care',
+    shortDesc: 'Walk-in emergency and general consultation — always open',
     image: 'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?w=800&q=80',
-    imageAlt: 'Emergency medical team at Sante 24 hospital',
+    imageAlt: 'Emergency care team at Santé 24hr Medical Centre, Harare',
     description:
-      'Our emergency unit is open 24 hours a day, 7 days a week, 365 days a year. Staffed by trained emergency physicians and nurses, we handle everything from minor injuries to life-threatening emergencies with speed, skill, and compassion. No appointment needed — walk in any time. Our rapid triage system ensures you receive care based on severity without unnecessary delay.',
+      'Our emergency and general care unit operates 24 hours a day, 7 days a week, 365 days a year. Staffed by experienced doctors and nurses, we handle everything from walk-in consultations and minor ailments to life-threatening emergencies with speed and skill. Our rapid triage system ensures patients receive care based on clinical priority, with no unnecessary delay. No appointment is ever needed — simply walk in.',
     features: [
-      'Trauma & injury treatment',
-      'Cardiac emergencies',
-      'Respiratory distress',
-      'Stroke management',
-      'Severe allergic reactions',
-      'Paediatric emergencies',
+      'Walk-in consultations at any hour',
+      'Emergency response and stabilisation',
+      'Fully equipped consultation rooms',
+      'Observation wards with nursing care',
+      'Minor procedures and wound care',
+      'Pre-employment medicals',
     ],
+    maternity: false,
   },
   {
-    id: 'maternal',
-    icon: Baby,
-    name: 'Maternal & Child Health',
-    shortDesc: 'Complete care for mothers and babies',
-    image: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=800&q=80',
-    imageAlt: 'African mother and newborn receiving maternal care',
-    description:
-      'We offer complete maternal health services from preconception counselling through postnatal care. Our dedicated maternal health team supports mothers through every stage of pregnancy with compassion and clinical excellence. We provide a safe, nurturing environment where both mother and child receive personalised attention from our experienced midwives and obstetricians.',
-    features: [
-      'Antenatal care & monitoring',
-      'Labour & delivery support',
-      'Postnatal mother & baby check-ups',
-      'Family planning counselling',
-      'High-risk pregnancy management',
-      'Breastfeeding support',
-    ],
-  },
-  {
-    id: 'paediatrics',
-    icon: HeartPulse,
-    name: 'Paediatrics',
-    shortDesc: 'Specialized care for children',
-    image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800&q=80',
-    imageAlt: 'African paediatrician examining a child',
-    description:
-      'Our paediatric department specialises in the health and wellbeing of children from newborns to adolescents. Our friendly, child-centred approach puts both children and parents at ease while delivering the highest standard of medical care. We track each child\'s growth and development milestones to catch any issues early, and parents are welcomed as active partners throughout.',
-    features: [
-      'Newborn screening & care',
-      'Immunisation & vaccinations',
-      'Growth & development monitoring',
-      'Childhood illness treatment',
-      'Nutritional assessments',
-      'School health certificates',
-    ],
-  },
-  {
-    id: 'mental',
-    icon: Brain,
-    name: 'Mental Wellness',
-    shortDesc: 'Professional mental health support',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80',
-    imageAlt: 'African mental health counsellor in a session',
-    description:
-      'Mental health is health. Our mental wellness clinic provides confidential, judgment-free support for adults and adolescents. We understand the cultural context of mental health in Zimbabwe and offer care sensitive to our community\'s unique needs. Our counsellors help patients build resilience, process trauma, and develop healthy coping strategies.',
-    features: [
-      'Depression & anxiety counselling',
-      'Stress management therapy',
-      'Trauma & grief support',
-      'Substance use counselling',
-      'Adolescent mental health',
-      'Referral to psychiatric specialists',
-    ],
-  },
-  {
-    id: 'dental',
-    icon: Smile,
-    name: 'Dental Care',
-    shortDesc: 'Full range of dental services',
-    image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80',
-    imageAlt: 'African dentist examining a patient',
-    description:
-      'Our dental clinic offers a full range of general and cosmetic dentistry services in a comfortable, modern environment. Our dentists use the latest techniques to ensure your dental visits are as pain-free and efficient as possible. We treat patients of all ages and provide both preventive and restorative dental care for a lifetime of healthy smiles.',
-    features: [
-      'Routine dental check-ups & cleaning',
-      'Tooth extractions',
-      'Fillings & restorations',
-      'Root canal treatment',
-      'Teeth whitening',
-      'Dental X-rays',
-    ],
-  },
-  {
-    id: 'lab',
+    id: 'diagnostics',
     icon: FlaskConical,
-    name: 'Laboratory Services',
-    shortDesc: 'Accurate same-day diagnostic testing',
+    name: 'Diagnostic & Laboratory Services',
+    shortDesc: 'On-site lab, X-ray, ultrasound — fast, accurate results',
     image: 'https://images.unsplash.com/photo-1579165466741-7f35e4755660?w=800&q=80',
-    imageAlt: 'Laboratory technician processing samples at Sante 24',
+    imageAlt: 'Laboratory technician processing samples at Santé 24hr Medical Centre',
     description:
-      'Our in-house laboratory provides fast, accurate diagnostic testing, with most results available same-day. Our state-of-the-art equipment and qualified laboratory scientists ensure reliable results without the long wait. Accurate diagnostics are the foundation of effective treatment, and our lab supports every department with rapid turnaround on all key tests.',
+      'Our in-house diagnostic centre provides comprehensive testing services, with most results available the same day. We operate a modern laboratory alongside X-ray and ultrasound facilities — including Doppler studies — to support accurate, timely diagnosis. Our qualified laboratory scientists ensure reliable results, and our team works efficiently to minimise the time between your consultation and your diagnosis.',
     features: [
-      'Full blood count (FBC)',
-      'HIV & STI testing',
-      'Malaria rapid diagnostic test',
-      'Blood glucose & HbA1c',
-      'Liver & kidney function panels',
-      'Urinalysis & pregnancy tests',
+      'Full blood count and blood panels',
+      'HIV, STI, and malaria rapid testing',
+      'Blood glucose, HbA1c, and diabetes panels',
+      'Digital X-ray imaging',
+      'Ultrasound including Doppler studies',
+      'Pre-employment medicals and certificates',
     ],
+    maternity: false,
   },
   {
-    id: 'pharmacy',
-    icon: Pill,
-    name: 'Pharmacy',
-    shortDesc: 'Convenient on-site pharmacy',
-    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&q=80',
-    imageAlt: 'African pharmacist dispensing medication',
+    id: 'theatre',
+    icon: Scissors,
+    name: 'Operating Theatre & Surgical Procedures',
+    shortDesc: 'Fully equipped theatre for minor and major surgery',
+    image: 'https://images.unsplash.com/photo-1578496479914-7ef3b0193be3?w=800&q=80',
+    imageAlt: 'Surgical team in the operating theatre at Santé 24hr Medical Centre',
     description:
-      'Our on-site pharmacy is stocked with a comprehensive range of prescription and over-the-counter medications. Our qualified pharmacists provide expert medication counselling and ensure you leave with the right medicine at the right dose. Located within the clinic, the pharmacy allows patients to fill prescriptions immediately after consultation.',
+      'Santé 24 houses a fully equipped operating theatre capable of handling both minor and major surgical procedures. Our sterile procedure rooms, professional anaesthesia support, and dedicated recovery care ensure patient safety and comfort throughout. Whether your procedure is planned or urgent, our surgical team is on hand to deliver expert care in a properly equipped environment.',
     features: [
-      'Prescription dispensing',
-      'Over-the-counter medicines',
-      'Chronic medication management',
-      'Medication counselling & education',
-      'Vaccine storage & administration',
-      'Medical supply & equipment',
+      'Fully equipped operating theatre',
+      'Minor and major surgical procedures',
+      'Sterile procedure rooms',
+      'Professional anaesthesia support',
+      'Post-surgical recovery care',
+      'Wound management and follow-up',
     ],
+    maternity: false,
   },
   {
-    id: 'physio',
-    icon: Activity,
-    name: 'Physiotherapy & Rehabilitation',
-    shortDesc: 'Recovery and mobility restoration',
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80',
-    imageAlt: 'African physiotherapist working with a patient',
+    id: 'specialist',
+    icon: UserCheck,
+    name: 'Specialist Consultations',
+    shortDesc: 'Multi-discipline specialist access and referrals',
+    image: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&q=80',
+    imageAlt: 'Specialist physician consulting a patient at Santé 24hr Medical Centre',
     description:
-      'Our physiotherapy department helps patients recover from injuries, surgeries, and chronic pain conditions. Our qualified physiotherapists create personalised treatment plans to restore strength, mobility, and quality of life. Whether recovering from a sports injury, surgery, or neurological event, our rehabilitation specialists guide every step of your recovery.',
+      'We provide access to a range of specialist consultations across multiple medical disciplines, either directly at our facility or through our referral network. Whether you need a second opinion, specialist follow-up, or a formal referral, our team coordinates your care to ensure continuity and the best clinical outcome.',
     features: [
-      'Post-surgical rehabilitation',
-      'Sports injury treatment',
-      'Back & neck pain management',
-      'Stroke rehabilitation',
-      'Paediatric physiotherapy',
-      'Electrotherapy & ultrasound therapy',
+      'Multi-discipline specialist access',
+      'Formal referral letters and coordination',
+      'Follow-up consultation management',
+      'Second opinions',
+      'Chronic disease specialist support',
+      'Results interpretation and care planning',
     ],
-  },
-  {
-    id: 'nutrition',
-    icon: Salad,
-    name: 'Nutrition & Dietetics',
-    shortDesc: 'Personalised nutrition and diet plans',
-    image: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80',
-    imageAlt: 'African dietitian advising on healthy nutrition',
-    description:
-      'Good nutrition is the foundation of good health. Our registered dietitian provides personalised nutrition plans for individuals managing chronic diseases, weight challenges, or seeking to optimise their overall health through diet. We take a practical, culturally aware approach — working with the foods you love and the lifestyle you live.',
-    features: [
-      'Diabetes meal planning',
-      'Weight management programmes',
-      'Malnutrition assessment & support',
-      'Maternal & infant nutrition',
-      'Sports nutrition',
-      'Cholesterol & heart health diets',
-    ],
+    maternity: false,
   },
 ]
 
-export default function ServicesPage() {
-  const [activeService, setActiveService] = useState('general')
-  const { openBooking } = useBooking()
+const maternityServices = [
+  {
+    id: 'antenatal',
+    icon: Baby,
+    name: 'Antenatal & Postnatal Care',
+    shortDesc: 'Complete care for mothers throughout pregnancy and after delivery',
+    image: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=800&q=80',
+    imageAlt: 'African mother receiving antenatal care at Santé 24 Maternity Hospital',
+    description:
+      'Our maternity team provides comprehensive antenatal monitoring and postnatal support for every mother. From your first trimester through to your postnatal recovery, we offer scheduled check-ups, nutritional guidance, high-risk pregnancy management, and responsive care whenever concerns arise. Our postnatal programme ensures both mother and newborn are thriving before, during, and after discharge.',
+    features: [
+      'Scheduled antenatal check-ups',
+      'Foetal monitoring and growth scans',
+      'High-risk pregnancy management',
+      'Nutritional and lifestyle guidance',
+      'Postnatal mother and baby assessments',
+      'Breastfeeding support and advice',
+    ],
+    maternity: true,
+  },
+  {
+    id: 'labour',
+    icon: HeartPulse,
+    name: 'Labour & Delivery',
+    shortDesc: 'Normal delivery and C-section in a dedicated maternity theatre',
+    image: 'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=800&q=80',
+    imageAlt: 'Maternity theatre at Santé 24 Maternity Hospital, Southerton, Harare',
+    description:
+      'Santé 24 Maternity Hospital provides 24-hour labour and delivery services, with a dedicated maternity theatre for both normal deliveries and C-sections. Our experienced midwives and obstetricians support every mother through labour, ensuring a safe, monitored, and compassionate delivery experience. Recovery rooms are available for mothers and newborns to rest and bond in comfort following delivery.',
+    features: [
+      '24-hour midwifery support during labour',
+      'Natural and assisted normal deliveries',
+      'Elective and emergency C-section capability',
+      'Dedicated maternity theatre',
+      'Foetal monitoring during labour',
+      'Comfortable recovery rooms',
+    ],
+    maternity: true,
+  },
+  {
+    id: 'gynae',
+    icon: Stethoscope,
+    name: 'Gynaecology & Obstetrics',
+    shortDesc: 'Specialist care for women\'s reproductive health',
+    image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800&q=80',
+    imageAlt: 'Gynaecologist consulting a patient at Santé 24 Maternity Hospital',
+    description:
+      'Our gynaecology and obstetrics service offers specialist care for women at every stage of reproductive health. From routine gynaecological examinations and contraception management to complex obstetric conditions and surgical gynaecological procedures, our specialists provide evidence-based, compassionate care. We treat a wide range of conditions including PCOS, fibroids, endometriosis, and menstrual disorders.',
+    features: [
+      'Routine gynaecological examinations',
+      'Obstetric specialist assessments',
+      'Management of PCOS, fibroids, and endometriosis',
+      'Menstrual health and hormonal management',
+      'Cervical screening (Pap smear)',
+      'Gynaecological surgical procedures',
+    ],
+    maternity: true,
+  },
+  {
+    id: 'ultrasound',
+    icon: ScanLine,
+    name: 'Ultrasound Scanning with Doppler Studies',
+    shortDesc: 'Advanced obstetric and diagnostic ultrasound with Doppler',
+    image: 'https://images.unsplash.com/photo-1581056771107-24ca5f033842?w=800&q=80',
+    imageAlt: 'Ultrasound scan being performed at Santé 24 Maternity Hospital',
+    description:
+      'Our ultrasound suite offers advanced scanning services for both obstetric and general diagnostic purposes. We use modern equipment to provide detailed foetal assessments, Doppler blood flow studies, abdominal scans, and soft tissue imaging. Results are interpreted by experienced clinicians and reported promptly to ensure timely clinical decision-making.',
+    features: [
+      'First, second, and third trimester foetal scans',
+      'Anomaly and growth scans',
+      'Doppler blood flow studies',
+      'Abdominal and pelvic ultrasound',
+      'Soft tissue and musculoskeletal imaging',
+      'Prompt written reports',
+    ],
+    maternity: true,
+  },
+  {
+    id: 'family-planning',
+    icon: Users,
+    name: 'Family Planning Services',
+    shortDesc: 'Confidential counselling and contraception support',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80',
+    imageAlt: 'Family planning consultation at Santé 24 Maternity Hospital, Harare',
+    description:
+      'Our family planning service provides confidential, non-judgmental counselling and contraception management for couples and individuals. We offer a full range of modern contraceptive options and guidance to help patients make informed, empowered decisions about their reproductive health. Our team takes a culturally sensitive and practical approach tailored to each patient\'s circumstances.',
+    features: [
+      'Confidential family planning counselling',
+      'Short and long-term contraception options',
+      'Implant and IUD insertion and removal',
+      'Injectable contraception',
+      'Oral contraceptive prescriptions',
+      'Reproductive health education',
+    ],
+    maternity: true,
+  },
+]
 
-  const currentService = services.find(s => s.id === activeService) || services[0]
+const allServices = [...medicalServices, ...maternityServices]
+
+export default function ServicesPage() {
+  const [activeService, setActiveService] = useState('emergency-general')
+
+  const currentService = allServices.find(s => s.id === activeService) || allServices[0]
   const Icon = currentService.icon
+  const accent = currentService.maternity ? '#7F77DD' : '#00B4A6'
+
+  const waMessage = encodeURIComponent(
+    `Hello Santé 24hr Medical Centre! I would like to enquire about / book an appointment for: ${currentService.name}.`
+  )
 
   return (
     <>
@@ -222,7 +227,7 @@ export default function ServicesPage() {
               Our Services
             </h1>
             <p className="text-white/80 text-lg max-w-2xl mx-auto">
-              Comprehensive healthcare services tailored to meet all your medical needs — 24 hours a day, 7 days a week.
+              General medical care and dedicated maternity services — 24 hours a day, every day of the year.
             </p>
           </motion.div>
         </div>
@@ -232,10 +237,11 @@ export default function ServicesPage() {
       <section className="py-12 md:py-20">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
 
-          {/* Mobile Service Selector — full-width strip above the grid */}
+          {/* Mobile Service Selector */}
           <div className="lg:hidden mb-6">
-            <div className="flex overflow-x-auto gap-2 pb-3 no-scrollbar">
-              {services.map((service) => {
+            <p className="text-xs font-bold uppercase tracking-wider text-[#003366] mb-2 px-1">Medical Centre</p>
+            <div className="flex overflow-x-auto gap-2 pb-2 no-scrollbar">
+              {medicalServices.map((service) => {
                 const ServiceIcon = service.icon
                 return (
                   <button
@@ -253,16 +259,37 @@ export default function ServicesPage() {
                 )
               })}
             </div>
+            <p className="text-xs font-bold uppercase tracking-wider text-[#7F77DD] mb-2 mt-4 px-1">Maternity Hospital</p>
+            <div className="flex overflow-x-auto gap-2 pb-3 no-scrollbar">
+              {maternityServices.map((service) => {
+                const ServiceIcon = service.icon
+                return (
+                  <button
+                    key={service.id}
+                    onClick={() => setActiveService(service.id)}
+                    className={`flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all ${
+                      activeService === service.id
+                        ? 'text-white border-[#7F77DD]'
+                        : 'bg-white text-[#7F77DD] border-border hover:border-[#7F77DD]'
+                    }`}
+                    style={activeService === service.id ? { backgroundColor: '#7F77DD' } : {}}
+                  >
+                    <ServiceIcon className="w-4 h-4 flex-shrink-0" />
+                    <span className="font-medium text-sm whitespace-nowrap">{service.name}</span>
+                  </button>
+                )
+              })}
+            </div>
           </div>
 
           <div className="grid lg:grid-cols-[280px_1fr] gap-8">
 
             {/* Sidebar — Desktop only */}
-            <aside className="hidden lg:block">
+            <aside className="hidden lg:block" id="medical-centre">
               <div className="sticky top-28 bg-[#F7F9FC] rounded-2xl p-4">
-                <h3 className="font-heading font-bold text-lg text-[#003366] mb-4 px-2">Services</h3>
-                <nav className="space-y-1">
-                  {services.map((service) => {
+                <p className="text-xs font-bold uppercase tracking-wider text-[#003366] mb-3 px-2">Medical Centre</p>
+                <nav className="space-y-1 mb-4">
+                  {medicalServices.map((service) => {
                     const ServiceIcon = service.icon
                     return (
                       <button
@@ -280,6 +307,30 @@ export default function ServicesPage() {
                     )
                   })}
                 </nav>
+
+                <div className="border-t border-border pt-4" id="maternity">
+                  <p className="text-xs font-bold uppercase tracking-wider text-[#7F77DD] mb-3 px-2">Santé 24 Maternity Hospital</p>
+                  <nav className="space-y-1">
+                    {maternityServices.map((service) => {
+                      const ServiceIcon = service.icon
+                      return (
+                        <button
+                          key={service.id}
+                          onClick={() => setActiveService(service.id)}
+                          className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all ${
+                            activeService === service.id
+                              ? 'text-white'
+                              : 'text-[#7F77DD] hover:bg-white'
+                          }`}
+                          style={activeService === service.id ? { backgroundColor: '#7F77DD' } : {}}
+                        >
+                          <ServiceIcon className="w-5 h-5 flex-shrink-0" />
+                          <span className="font-medium text-sm">{service.name}</span>
+                        </button>
+                      )
+                    })}
+                  </nav>
+                </div>
               </div>
             </aside>
 
@@ -307,9 +358,20 @@ export default function ServicesPage() {
                 </div>
 
                 <div className="p-6 md:p-8">
+                  {currentService.maternity && (
+                    <div
+                      className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4"
+                      style={{ backgroundColor: '#7F77DD20', color: '#7F77DD' }}
+                    >
+                      Santé 24 Maternity Hospital
+                    </div>
+                  )}
                   <div className="flex items-start gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-[#00B4A6]/10 flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-7 h-7 text-[#00B4A6]" />
+                    <div
+                      className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
+                      style={{ backgroundColor: `${accent}1A` }}
+                    >
+                      <Icon className="w-7 h-7" style={{ color: accent }} />
                     </div>
                     <div>
                       <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#003366]">
@@ -329,21 +391,27 @@ export default function ServicesPage() {
                   <ul className="grid md:grid-cols-2 gap-3 mb-8">
                     {currentService.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-3">
-                        <div className="w-5 h-5 rounded-full bg-[#00B4A6]/20 flex items-center justify-center flex-shrink-0">
-                          <div className="w-2 h-2 rounded-full bg-[#00B4A6]" />
+                        <div
+                          className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                          style={{ backgroundColor: `${accent}20` }}
+                        >
+                          <div className="w-2 h-2 rounded-full" style={{ backgroundColor: accent }} />
                         </div>
                         <span className="text-muted-foreground text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <Button
-                    onClick={() => openBooking(undefined, currentService.id)}
-                    size="lg"
-                    className="bg-[#00B4A6] hover:bg-[#009688] text-white rounded-full px-8"
+                  <a
+                    href={`https://wa.me/263789158334?text=${waMessage}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 text-white font-medium text-base px-8 py-4 rounded-full transition-colors"
+                    style={{ backgroundColor: accent }}
                   >
-                    Book this Service
-                  </Button>
+                    <WhatsAppIcon />
+                    Enquire / Book via WhatsApp
+                  </a>
                 </div>
               </div>
             </motion.main>
@@ -361,18 +429,25 @@ export default function ServicesPage() {
             transition={{ duration: 0.5 }}
           >
             <h2 className="text-2xl md:text-3xl font-heading font-bold text-white mb-4">
-              Need Help Choosing?
+              Need Help or Have a Question?
             </h2>
             <p className="text-white/70 mb-8 max-w-xl mx-auto">
-              Not sure which service you need? Our team is here to help guide you to the right care.
+              Call us any time — our team is available 24 hours a day, 7 days a week, 365 days a year.
             </p>
-            <Button
-              asChild
-              size="lg"
-              className="bg-[#00B4A6] hover:bg-[#009688] text-white rounded-full px-8"
-            >
-              <a href="tel:+263789158334">Call Us: +263 78 915 8334</a>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="tel:+2634620588"
+                className="inline-flex items-center justify-center gap-2 bg-white text-[#003366] font-medium px-8 py-3 rounded-full hover:bg-white/90 transition-colors"
+              >
+                Call 04 620588
+              </a>
+              <a
+                href="tel:+2638644150770"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 text-white font-medium px-8 py-3 rounded-full hover:bg-white/20 transition-colors border border-white/20"
+              >
+                Call 0864 415 077
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>

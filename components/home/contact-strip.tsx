@@ -55,7 +55,7 @@ export function ContactStrip() {
                 </div>
                 <div>
                   <p className="font-heading font-bold text-[#003366]">Address</p>
-                  <p className="text-muted-foreground">12 Remembrance Drive, Southerton, Harare, Zimbabwe</p>
+                  <p className="text-muted-foreground">Shop 5, Southerton Shopping Centre, St Johns Way, Southerton, Harare, Zimbabwe</p>
                 </div>
               </div>
 
@@ -65,9 +65,8 @@ export function ContactStrip() {
                 </div>
                 <div>
                   <p className="font-heading font-bold text-[#003366]">Phone</p>
-                  <a href="tel:+263789158334" className="text-muted-foreground hover:text-[#00B4A6] transition-colors">
-                    +263 78 915 8334
-                  </a>
+                  <a href="tel:+2634620588" className="block text-muted-foreground hover:text-[#00B4A6] transition-colors">04 620588</a>
+                  <a href="tel:+2638644150770" className="block text-muted-foreground hover:text-[#00B4A6] transition-colors">0864 415 077</a>
                 </div>
               </div>
 

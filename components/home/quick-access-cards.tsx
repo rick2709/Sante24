@@ -1,28 +1,28 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { UserSearch, Stethoscope, CalendarCheck, ArrowRight } from 'lucide-react'
+import { Siren, Stethoscope, CalendarCheck, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { useBooking } from '@/components/booking-context'
 
 const cards = [
   {
-    icon: UserSearch,
-    title: 'Find a Doctor',
-    description: 'Search our team of specialist doctors by name or specialty.',
-    href: '/doctors',
+    icon: Siren,
+    title: 'Emergency Care',
+    description: 'Open 24 hours, 7 days a week. Walk in any time — no appointment needed for emergencies.',
+    href: '/services',
   },
   {
     icon: Stethoscope,
     title: 'Our Services',
-    description: 'From emergency care to dental services, we cover all your needs.',
+    description: 'From diagnostics and surgery to full maternity care — all under one roof in Southerton.',
     href: '/services',
   },
   {
     icon: CalendarCheck,
     title: 'Book Appointment',
-    description: 'Schedule your visit online in just a few clicks.',
-    href: null, // Opens booking modal
+    description: 'Schedule your visit via WhatsApp in just a few clicks.',
+    href: null,
   },
 ]
 
@@ -35,7 +35,7 @@ export function QuickAccessCards() {
         {cards.map((card, index) => {
           const Icon = card.icon
           const isBooking = card.href === null
-          
+
           const CardContent = (
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -65,7 +65,7 @@ export function QuickAccessCards() {
           }
 
           return (
-            <Link key={card.title} href={card.href}>
+            <Link key={card.title} href={card.href!}>
               {CardContent}
             </Link>
           )

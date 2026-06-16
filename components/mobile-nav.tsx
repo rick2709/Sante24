@@ -3,14 +3,13 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { Home, Stethoscope, Newspaper, UserRound, Phone, Calendar } from 'lucide-react'
+import { Home, Stethoscope, Newspaper, Phone, Calendar } from 'lucide-react'
 import { useBooking } from './booking-context'
 
 const navItems = [
   { href: '/', icon: Home, label: 'Home' },
   { href: '/services', icon: Stethoscope, label: 'Services' },
   { href: '/blog', icon: Newspaper, label: 'Blog' },
-  { href: '/doctors', icon: UserRound, label: 'Doctors' },
   { href: '/contact', icon: Phone, label: 'Contact' },
 ]
 
@@ -43,7 +42,7 @@ export function MobileNav() {
           {navItems.map((item) => {
             const isActive = pathname === item.href
             const Icon = item.icon
-            
+
             return (
               <Link
                 key={item.href}
@@ -51,25 +50,13 @@ export function MobileNav() {
                 className="flex flex-col items-center gap-0.5 py-1 px-3 min-w-[60px]"
               >
                 <motion.div
-                  animate={{ 
-                    scale: isActive ? 1.1 : 1,
-                  }}
+                  animate={{ scale: isActive ? 1.1 : 1 }}
                   transition={{ type: 'spring', stiffness: 300 }}
-                  className={`p-1.5 rounded-full transition-colors ${
-                    isActive ? 'bg-[#00B4A6]/10' : ''
-                  }`}
+                  className={`p-1.5 rounded-full transition-colors ${isActive ? 'bg-[#00B4A6]/10' : ''}`}
                 >
-                  <Icon 
-                    className={`w-5 h-5 transition-colors ${
-                      isActive ? 'text-[#00B4A6]' : 'text-gray-500'
-                    }`} 
-                  />
+                  <Icon className={`w-5 h-5 transition-colors ${isActive ? 'text-[#00B4A6]' : 'text-gray-500'}`} />
                 </motion.div>
-                <span 
-                  className={`text-[10px] font-medium transition-colors ${
-                    isActive ? 'text-[#00B4A6]' : 'text-gray-500'
-                  }`}
-                >
+                <span className={`text-[10px] font-medium transition-colors ${isActive ? 'text-[#00B4A6]' : 'text-gray-500'}`}>
                   {item.label}
                 </span>
               </Link>

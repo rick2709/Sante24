@@ -16,26 +16,16 @@ import {
 } from '@/components/ui/select'
 import { useBooking } from './booking-context'
 
-const doctors = [
-  { id: 'dr-moyo', name: 'Dr. Tendai Moyo', specialty: 'General Medicine' },
-  { id: 'dr-chikwanda', name: 'Dr. Rudo Chikwanda', specialty: 'Paediatrics' },
-  { id: 'dr-mutasa', name: 'Dr. Farai Mutasa', specialty: 'Emergency Care' },
-  { id: 'dr-dube', name: 'Dr. Amara Dube', specialty: 'Maternal Health' },
-  { id: 'dr-ncube', name: 'Dr. Sifiso Ncube', specialty: 'Dental Care' },
-  { id: 'dr-makoni', name: 'Dr. Tariro Makoni', specialty: 'Mental Wellness' },
-]
-
-const services = [
-  { id: 'general', name: 'General Medicine' },
-  { id: 'emergency', name: 'Emergency & Urgent Care (24/7)' },
-  { id: 'maternal', name: 'Maternal & Child Health' },
-  { id: 'paediatrics', name: 'Paediatrics' },
-  { id: 'mental', name: 'Mental Wellness' },
-  { id: 'dental', name: 'Dental Care' },
-  { id: 'lab', name: 'Laboratory Services' },
-  { id: 'pharmacy', name: 'Pharmacy' },
-  { id: 'physio', name: 'Physiotherapy & Rehabilitation' },
-  { id: 'nutrition', name: 'Nutrition & Dietetics' },
+const departments = [
+  { id: 'emergency-general', name: '24-Hour Emergency & General Care' },
+  { id: 'diagnostics', name: 'Diagnostic & Laboratory Services' },
+  { id: 'theatre', name: 'Operating Theatre & Surgical Procedures' },
+  { id: 'specialist', name: 'Specialist Consultations' },
+  { id: 'antenatal', name: 'Antenatal & Postnatal Care' },
+  { id: 'labour', name: 'Labour & Delivery' },
+  { id: 'gynae', name: 'Gynaecology & Obstetrics' },
+  { id: 'ultrasound', name: 'Ultrasound Scanning with Doppler' },
+  { id: 'family-planning', name: 'Family Planning Services' },
 ]
 
 const timeSlots = [
@@ -46,14 +36,13 @@ const timeSlots = [
 const todayDate = () => new Date().toISOString().split('T')[0]
 
 export function BookingModal() {
-  const { isOpen, closeBooking, preselectedDoctor, preselectedService } = useBooking()
+  const { isOpen, closeBooking, preselectedService } = useBooking()
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
-    doctor: '',
-    service: '',
+    department: '',
     date: '',
     time: '',
     notes: '',
@@ -65,18 +54,16 @@ export function BookingModal() {
       setErrors({})
       setFormData(prev => ({
         ...prev,
-        doctor: preselectedDoctor || prev.doctor,
-        service: preselectedService || prev.service,
+        department: preselectedService || prev.department,
       }))
     }
-  }, [isOpen, preselectedDoctor, preselectedService])
+  }, [isOpen, preselectedService])
 
   const validate = () => {
     const newErrors: Record<string, string> = {}
     if (!formData.fullName.trim()) newErrors.fullName = 'Full name is required'
     if (!formData.phone.trim()) newErrors.phone = 'Phone number is required'
-    if (!formData.doctor) newErrors.doctor = 'Please select a doctor'
-    if (!formData.service) newErrors.service = 'Please select a service'
+    if (!formData.department) newErrors.department = 'Please select a department or service'
     if (!formData.date) newErrors.date = 'Please select a date'
     if (!formData.time) newErrors.time = 'Please select a time'
     setErrors(newErrors)
@@ -87,16 +74,13 @@ export function BookingModal() {
     e.preventDefault()
     if (!validate()) return
 
-    const doctorLabel = doctors.find(d => d.id === formData.doctor)
-    const doctorName = doctorLabel ? `${doctorLabel.name} – ${doctorLabel.specialty}` : formData.doctor
-    const serviceName = services.find(s => s.id === formData.service)?.name || formData.service
+    const deptName = departments.find(d => d.id === formData.department)?.name || formData.department
 
     const message =
-      `Hello Sante 24 Medical Center!\n\nI would like to book an appointment with the following details:\n\n` +
+      `Hello Santé 24hr Medical Centre!\n\nI would like to book an appointment with the following details:\n\n` +
       `👤 Name: ${formData.fullName}\n` +
       `📞 Phone: ${formData.phone}\n` +
-      `🩺 Doctor: ${doctorName}\n` +
-      `🏥 Service: ${serviceName}\n` +
+      `🏥 Department / Service: ${deptName}\n` +
       `📅 Date: ${formData.date}\n` +
       `⏰ Time: ${formData.time}\n` +
       `📝 Notes: ${formData.notes || 'None'}\n\n` +
@@ -111,7 +95,7 @@ export function BookingModal() {
     setTimeout(() => {
       setIsSubmitted(false)
       setErrors({})
-      setFormData({ fullName: '', phone: '', doctor: '', service: '', date: '', time: '', notes: '' })
+      setFormData({ fullName: '', phone: '', department: '', date: '', time: '', notes: '' })
     }, 300)
   }
 
@@ -134,7 +118,7 @@ export function BookingModal() {
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className="relative w-full max-w-[520px] bg-white rounded-2xl shadow-2xl flex flex-col max-h-[90vh]"
           >
-            {/* Header — fixed, never scrolls */}
+            {/* Header */}
             <div className="bg-gradient-to-r from-[#003366] to-[#005599] px-6 py-5 rounded-t-2xl flex-shrink-0">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -143,7 +127,7 @@ export function BookingModal() {
                   </div>
                   <div>
                     <h2 className="text-xl font-heading font-bold text-white">Book Appointment</h2>
-                    <p className="text-white/70 text-sm">Schedule your visit to Sante 24</p>
+                    <p className="text-white/70 text-sm">Schedule your visit to Santé 24</p>
                   </div>
                 </div>
                 <button
@@ -155,7 +139,7 @@ export function BookingModal() {
               </div>
             </div>
 
-            {/* Content — scrollable */}
+            {/* Content */}
             <div className="p-6 overflow-y-auto rounded-b-2xl">
               <AnimatePresence mode="wait">
                 {isSubmitted ? (
@@ -173,7 +157,7 @@ export function BookingModal() {
                       Booking Sent to WhatsApp!
                     </h3>
                     <p className="text-muted-foreground mb-6">
-                      Your booking request has been sent to WhatsApp! Our team will confirm shortly.
+                      Your booking request has been sent. Our team will confirm shortly.
                     </p>
                     <Button
                       onClick={handleClose}
@@ -218,44 +202,24 @@ export function BookingModal() {
                         {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                       </div>
 
-                      <div className="col-span-2 sm:col-span-1">
-                        <Label className="text-[#003366]">Select Doctor *</Label>
+                      <div className="col-span-2">
+                        <Label className="text-[#003366]">Select Department / Service *</Label>
                         <Select
-                          value={formData.doctor}
-                          onValueChange={(value) => setFormData({ ...formData, doctor: value })}
+                          value={formData.department}
+                          onValueChange={(value) => setFormData({ ...formData, department: value })}
                         >
-                          <SelectTrigger className={`mt-1.5 rounded-xl ${errors.doctor ? 'border-red-500' : ''}`}>
-                            <SelectValue placeholder="Choose a doctor" />
+                          <SelectTrigger className={`mt-1.5 rounded-xl ${errors.department ? 'border-red-500' : ''}`}>
+                            <SelectValue placeholder="Choose a department or service" />
                           </SelectTrigger>
                           <SelectContent>
-                            {doctors.map((doctor) => (
-                              <SelectItem key={doctor.id} value={doctor.id}>
-                                {doctor.name} – {doctor.specialty}
+                            {departments.map((dept) => (
+                              <SelectItem key={dept.id} value={dept.id}>
+                                {dept.name}
                               </SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
-                        {errors.doctor && <p className="text-red-500 text-xs mt-1">{errors.doctor}</p>}
-                      </div>
-
-                      <div className="col-span-2 sm:col-span-1">
-                        <Label className="text-[#003366]">Select Service *</Label>
-                        <Select
-                          value={formData.service}
-                          onValueChange={(value) => setFormData({ ...formData, service: value })}
-                        >
-                          <SelectTrigger className={`mt-1.5 rounded-xl ${errors.service ? 'border-red-500' : ''}`}>
-                            <SelectValue placeholder="Choose a service" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {services.map((service) => (
-                              <SelectItem key={service.id} value={service.id}>
-                                {service.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        {errors.service && <p className="text-red-500 text-xs mt-1">{errors.service}</p>}
+                        {errors.department && <p className="text-red-500 text-xs mt-1">{errors.department}</p>}
                       </div>
 
                       <div>
@@ -305,7 +269,7 @@ export function BookingModal() {
                       type="submit"
                       className="w-full bg-[#00B4A6] hover:bg-[#009688] text-white rounded-full py-6 text-base font-medium"
                     >
-                      Confirm Booking
+                      Confirm Booking via WhatsApp
                     </Button>
                   </motion.form>
                 )}

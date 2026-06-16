@@ -31,33 +31,6 @@ const contactReasons = [
   'Other',
 ]
 
-const contactInfo = [
-  {
-    icon: MapPin,
-    title: 'Address',
-    details: ['12 Remembrance Drive', 'Southerton, Harare', 'Zimbabwe'],
-  },
-  {
-    icon: Phone,
-    title: 'Phone',
-    details: ['+263 78 915 8334'],
-    isLink: true,
-    linkPrefix: 'tel:+263789158334',
-  },
-  {
-    icon: Mail,
-    title: 'Email',
-    details: ['info@sante24.co.zw'],
-    isLink: true,
-    linkPrefix: 'mailto:info@sante24.co.zw',
-  },
-  {
-    icon: Clock,
-    title: 'Hours',
-    details: ['Open 24 Hours', '7 Days a Week'],
-  },
-]
-
 function WhatsAppIcon() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -74,16 +47,27 @@ export default function ContactPage() {
     reason: '',
     message: '',
   })
+  const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitted, setIsSubmitted] = useState(false)
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {}
+    if (!formData.name.trim()) newErrors.name = 'Full name is required'
+    if (!formData.phone.trim()) newErrors.phone = 'Phone number is required'
+    if (!formData.message.trim()) newErrors.message = 'Message is required'
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    if (!validate()) return
 
     const message =
-      `Hello Sante 24 Medical Center!\n\nNew contact form submission:\n\n` +
+      `Hello Santé 24hr Medical Centre!\n\nNew contact form submission:\n\n` +
       `👤 Name: ${formData.name}\n` +
       `📞 Phone: ${formData.phone}\n` +
-      `📧 Email: ${formData.email}\n` +
+      `📧 Email: ${formData.email || 'Not provided'}\n` +
       `📋 Reason: ${formData.reason || 'Not specified'}\n` +
       `💬 Message: ${formData.message}\n\n` +
       `Please get back to me. Thank you!`
@@ -92,6 +76,7 @@ export default function ContactPage() {
     setIsSubmitted(true)
     setTimeout(() => {
       setIsSubmitted(false)
+      setErrors({})
       setFormData({ name: '', phone: '', email: '', reason: '', message: '' })
     }, 4000)
   }
@@ -111,7 +96,7 @@ export default function ContactPage() {
               Contact Us
             </h1>
             <p className="text-white/80 text-lg max-w-2xl mx-auto">
-              We&apos;re here to help. Reach out to us for any questions or to schedule an appointment.
+              We&apos;re here 24 hours a day, 7 days a week, 365 days a year. Reach out any time.
             </p>
           </motion.div>
         </div>
@@ -120,15 +105,15 @@ export default function ContactPage() {
       {/* Emergency Banner */}
       <section className="bg-[#FF6B6B]">
         <div className="max-w-6xl mx-auto px-4 md:px-6 py-4">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-center sm:text-left">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-center sm:text-left flex-wrap">
             <div className="flex items-center gap-2">
               <AlertTriangle className="w-5 h-5 text-white" />
               <span className="font-heading font-bold text-white">Medical Emergency?</span>
             </div>
             <span className="text-white/90">Call us now:</span>
-            <a href="tel:+263789158334" className="font-bold text-white hover:underline">
-              +263 78 915 8334
-            </a>
+            <a href="tel:+2634620588" className="font-bold text-white hover:underline">04 620588</a>
+            <span className="text-white/70 hidden sm:inline">or</span>
+            <a href="tel:+2638644150770" className="font-bold text-white hover:underline">0864 415 077</a>
           </div>
         </div>
       </section>
@@ -161,7 +146,7 @@ export default function ContactPage() {
                     Message Sent to WhatsApp!
                   </h3>
                   <p className="text-green-700">
-                    Thank you for contacting Sante 24. We&apos;ll get back to you shortly.
+                    Thank you for contacting Santé 24. We&apos;ll get back to you shortly.
                   </p>
                 </motion.div>
               ) : (
@@ -174,8 +159,9 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="Enter your full name"
-                      className="mt-1.5 rounded-xl border-border focus:border-[#00B4A6]"
+                      className={`mt-1.5 rounded-xl ${errors.name ? 'border-red-500' : 'border-border focus:border-[#00B4A6]'}`}
                     />
+                    {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-5">
@@ -188,8 +174,9 @@ export default function ContactPage() {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+263 7X XXX XXXX"
-                        className="mt-1.5 rounded-xl border-border focus:border-[#00B4A6]"
+                        className={`mt-1.5 rounded-xl ${errors.phone ? 'border-red-500' : 'border-border focus:border-[#00B4A6]'}`}
                       />
+                      {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                     </div>
                     <div>
                       <Label htmlFor="email" className="text-[#003366]">Email Address</Label>
@@ -229,8 +216,9 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="How can we help you?"
-                      className="mt-1.5 rounded-xl border-border focus:border-[#00B4A6] min-h-[120px]"
+                      className={`mt-1.5 rounded-xl min-h-[120px] ${errors.message ? 'border-red-500' : 'border-border focus:border-[#00B4A6]'}`}
                     />
+                    {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
                   </div>
 
                   <Button
@@ -257,34 +245,60 @@ export default function ContactPage() {
               </h2>
 
               <div className="space-y-4 mb-8">
-                {contactInfo.map((info) => {
-                  const Icon = info.icon
-                  return (
-                    <div key={info.title} className="flex items-start gap-4 p-4 bg-[#F7F9FC] rounded-2xl">
-                      <div className="w-12 h-12 rounded-xl bg-[#00B4A6]/10 flex items-center justify-center flex-shrink-0">
-                        <Icon className="w-6 h-6 text-[#00B4A6]" />
-                      </div>
-                      <div>
-                        <h3 className="font-heading font-bold text-[#003366]">{info.title}</h3>
-                        <div className="space-y-0.5 mt-1">
-                          {info.details.map((detail, index) => (
-                            info.isLink ? (
-                              <a
-                                key={index}
-                                href={info.linkPrefix}
-                                className="block text-muted-foreground hover:text-[#00B4A6] transition-colors"
-                              >
-                                {detail}
-                              </a>
-                            ) : (
-                              <p key={index} className="text-muted-foreground">{detail}</p>
-                            )
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })}
+                {/* Address */}
+                <div className="flex items-start gap-4 p-4 bg-[#F7F9FC] rounded-2xl">
+                  <div className="w-12 h-12 rounded-xl bg-[#00B4A6]/10 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-[#00B4A6]" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-bold text-[#003366]">Address</h3>
+                    <p className="text-muted-foreground text-sm mt-1">
+                      Shop 5, Southerton Shopping Centre<br />
+                      St Johns Way, Southerton<br />
+                      Harare, Zimbabwe
+                    </p>
+                  </div>
+                </div>
+
+                {/* Phone */}
+                <div className="flex items-start gap-4 p-4 bg-[#F7F9FC] rounded-2xl">
+                  <div className="w-12 h-12 rounded-xl bg-[#00B4A6]/10 flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-[#00B4A6]" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-bold text-[#003366]">Phone</h3>
+                    <a href="tel:+2634620588" className="block text-muted-foreground hover:text-[#00B4A6] transition-colors mt-1">
+                      04 620588
+                    </a>
+                    <a href="tel:+2638644150770" className="block text-muted-foreground hover:text-[#00B4A6] transition-colors">
+                      0864 415 077
+                    </a>
+                  </div>
+                </div>
+
+                {/* Email */}
+                <div className="flex items-start gap-4 p-4 bg-[#F7F9FC] rounded-2xl">
+                  <div className="w-12 h-12 rounded-xl bg-[#00B4A6]/10 flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-6 h-6 text-[#00B4A6]" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-bold text-[#003366]">Email</h3>
+                    <a href="mailto:info@santemedical.co.zw" className="text-muted-foreground hover:text-[#00B4A6] transition-colors mt-1 block">
+                      info@santemedical.co.zw
+                    </a>
+                  </div>
+                </div>
+
+                {/* Hours */}
+                <div className="flex items-start gap-4 p-4 bg-[#F7F9FC] rounded-2xl">
+                  <div className="w-12 h-12 rounded-xl bg-[#00B4A6]/10 flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-[#00B4A6]" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-bold text-[#003366]">Hours</h3>
+                    <p className="text-muted-foreground mt-1 font-medium">Open 24 Hours · 7 Days a Week · 365 Days a Year</p>
+                  </div>
+                </div>
 
                 {/* WhatsApp Card */}
                 <div className="p-5 bg-[#F7F9FC] rounded-2xl border-2 border-[#25D366]/20">
@@ -304,41 +318,29 @@ export default function ContactPage() {
                         className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-medium text-sm px-5 py-2.5 rounded-full transition-colors"
                       >
                         <WhatsAppIcon />
-                        Chat Now
+                        +263 78 915 8334
                       </a>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Map Placeholder */}
-              <div className="relative rounded-2xl overflow-hidden bg-[#F7F9FC] h-[240px] flex items-center justify-center">
-                <div className="text-center z-10">
-                  <div className="w-16 h-16 rounded-full bg-[#003366]/10 flex items-center justify-center mx-auto mb-4">
-                    <MapPin className="w-8 h-8 text-[#003366]" />
-                  </div>
-                  <p className="text-[#003366] font-heading font-bold">12 Remembrance Drive</p>
-                  <p className="text-muted-foreground">Southerton, Harare, Zimbabwe</p>
-                  <a
-                    href="https://maps.google.com/?q=Southerton+Harare+Zimbabwe"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block mt-3 text-[#00B4A6] text-sm font-medium hover:underline"
-                  >
-                    Open in Google Maps →
-                  </a>
-                </div>
-                <div className="absolute inset-0 opacity-5">
-                  <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                      <pattern id="contact-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#003366" strokeWidth="1" />
-                      </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#contact-grid)" />
-                  </svg>
-                </div>
+              {/* Google Maps Embed */}
+              <div className="relative rounded-2xl overflow-hidden h-[260px] shadow-sm">
+                <iframe
+                  src="https://maps.google.com/maps?q=Southerton+Shopping+Centre,St+Johns+Way,Southerton,Harare,Zimbabwe&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="260"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Santé 24hr Medical Centre — Southerton Shopping Centre, Harare, Zimbabwe"
+                />
               </div>
+              <p className="text-center text-xs text-muted-foreground mt-2">
+                Shop 5, Southerton Shopping Centre, St Johns Way, Southerton, Harare
+              </p>
             </motion.div>
           </div>
         </div>
@@ -363,25 +365,25 @@ export default function ContactPage() {
               <div className="bg-white rounded-2xl p-6 shadow-sm">
                 <h3 className="font-heading font-bold text-[#003366] mb-2">What are your operating hours?</h3>
                 <p className="text-muted-foreground text-sm">
-                  We are open 24 hours a day, 7 days a week. Our emergency department is always available — no appointment needed.
+                  We are open 24 hours a day, 7 days a week, 365 days a year — including public holidays. Our emergency department is always available, no appointment needed.
                 </p>
               </div>
               <div className="bg-white rounded-2xl p-6 shadow-sm">
                 <h3 className="font-heading font-bold text-[#003366] mb-2">Do I need an appointment?</h3>
                 <p className="text-muted-foreground text-sm">
-                  While appointments are recommended for non-emergency visits, we also accept walk-ins. Emergency cases are seen immediately.
+                  Walk-ins are welcome at any time. Appointments are recommended for non-emergency specialist consultations. Emergency cases are seen immediately on arrival.
                 </p>
               </div>
               <div className="bg-white rounded-2xl p-6 shadow-sm">
                 <h3 className="font-heading font-bold text-[#003366] mb-2">What payment methods do you accept?</h3>
                 <p className="text-muted-foreground text-sm">
-                  We accept cash, EcoCash, bank transfers, and most medical aid schemes operating in Zimbabwe.
+                  We accept cash (USD and ZWG), EcoCash, bank transfers, and most medical aid schemes operating in Zimbabwe.
                 </p>
               </div>
               <div className="bg-white rounded-2xl p-6 shadow-sm">
                 <h3 className="font-heading font-bold text-[#003366] mb-2">Where are you located?</h3>
                 <p className="text-muted-foreground text-sm">
-                  We are located at 12 Remembrance Drive, Southerton, Harare. Call us on +263 78 915 8334 for directions.
+                  We are at Shop 5, Southerton Shopping Centre, St Johns Way, Southerton, Harare. Call us on <a href="tel:+2634620588" className="text-[#00B4A6] hover:underline">04 620588</a> or <a href="tel:+2638644150770" className="text-[#00B4A6] hover:underline">0864 415 077</a> for directions.
                 </p>
               </div>
             </div>

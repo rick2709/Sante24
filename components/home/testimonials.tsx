@@ -27,7 +27,7 @@ const testimonials = [
     role: 'Patient',
     image: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=400&q=80',
     rating: 5,
-    quote: 'Dr. Chikwanda took excellent care of my children through their vaccinations. I highly recommend Sante 24 for all families in Harare — truly world-class care.',
+    quote: 'The team at Santé 24 took excellent care of my children through their vaccinations. I highly recommend Santé 24 for all families in Harare — truly world-class care.',
   },
 ]
 

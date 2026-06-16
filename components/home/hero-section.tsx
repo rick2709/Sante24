@@ -139,8 +139,7 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.25 }}
               className="mt-6 text-lg md:text-xl text-white/85 leading-relaxed max-w-xl"
             >
-              Comprehensive medical care for every Harare family, every hour of the day.
-              Modern facilities, expert doctors, compassionate service.
+              Licensed 24-hour medical centre in Southerton, Harare, providing emergency care, diagnostics, surgery, and maternity services since 2016.
             </motion.p>
 
             <motion.div
@@ -174,14 +173,20 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.55 }}
               className="mt-8 flex items-center gap-3"
             >
-              <div className="w-12 h-12 rounded-full bg-[#FF6B6B] flex items-center justify-center">
+              <div className="w-12 h-12 rounded-full bg-[#FF6B6B] flex items-center justify-center flex-shrink-0">
                 <Phone className="w-5 h-5 text-white" />
               </div>
               <div>
-                <p className="text-white/70 text-sm">Emergency Hotline</p>
-                <a href="tel:+263789158334" className="text-white font-heading font-bold text-lg hover:text-[#00B4A6] transition-colors">
-                  +263 78 915 8334
-                </a>
+                <p className="text-white/70 text-sm">Emergency Hotline — Open 24/7</p>
+                <div className="flex flex-wrap gap-x-3 gap-y-0.5">
+                  <a href="tel:+2634620588" className="text-white font-heading font-bold text-lg hover:text-[#00B4A6] transition-colors">
+                    04 620588
+                  </a>
+                  <span className="text-white/50 font-heading font-bold text-lg">·</span>
+                  <a href="tel:+2638644150770" className="text-white font-heading font-bold text-lg hover:text-[#00B4A6] transition-colors">
+                    0864 415 077
+                  </a>
+                </div>
               </div>
             </motion.div>
           </div>

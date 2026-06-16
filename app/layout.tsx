@@ -23,16 +23,62 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'Sante 24 Medical Center | 24/7 Healthcare in Harare, Zimbabwe',
-  description: 'Comprehensive 24-hour medical care for every Harare family. Emergency care, specialist doctors, maternal health, paediatrics, and more at 12 Remembrance Drive, Southerton, Harare.',
-  keywords: ['medical center', 'Harare', 'Zimbabwe', '24/7 healthcare', 'emergency care', 'doctors', 'Southerton'],
-  authors: [{ name: 'Sante 24 Medical Center' }],
+  title: {
+    default: 'Santé 24hr Medical Centre | 24-Hour Medical Care in Southerton, Harare',
+    template: '%s | Santé 24hr Medical Centre',
+  },
+  description: 'Santé 24hr Medical Centre is a licensed 24-hour medical centre in Southerton, Harare, Zimbabwe, offering emergency care, diagnostics, surgery, and maternity services since 2016.',
+  keywords: ['24 hour clinic Harare', 'medical centre Southerton', 'emergency care Harare', 'maternity hospital Harare', 'Sante 24', 'private hospital Zimbabwe', 'ultrasound scan Harare', 'antenatal care Harare', 'HPA licensed Zimbabwe', 'Southerton Shopping Centre clinic'],
+  authors: [{ name: 'Santé 24hr Medical Centre' }],
+  metadataBase: new URL('https://santemedical.co.zw'),
   openGraph: {
-    title: 'Sante 24 Medical Center | 24/7 Healthcare in Harare',
-    description: 'Comprehensive 24-hour medical care for every Harare family.',
+    title: 'Santé 24hr Medical Centre | 24-Hour Medical Care in Southerton, Harare',
+    description: 'Santé 24hr Medical Centre is a licensed 24-hour medical centre in Southerton, Harare, Zimbabwe, offering emergency care, diagnostics, surgery, and maternity services since 2016.',
     type: 'website',
     locale: 'en_ZW',
+    siteName: 'Santé 24hr Medical Centre',
+    url: 'https://santemedical.co.zw',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Santé 24hr Medical Centre | 24-Hour Medical Care in Southerton, Harare',
+    description: 'Licensed 24-hour medical centre in Southerton, Harare. Emergency care, diagnostics, surgery, and maternity services since 2016.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://santemedical.co.zw',
+  },
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Hospital',
+  name: 'Santé 24hr Medical Centre',
+  alternateName: 'Sante 24',
+  url: 'https://santemedical.co.zw',
+  logo: 'https://santemedical.co.zw/icon.svg',
+  description: 'Licensed 24-hour medical centre in Southerton, Harare, providing emergency care, diagnostics, operating theatre, and maternity services since October 2016.',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Shop 5, Southerton Shopping Centre, St Johns Way',
+    addressLocality: 'Southerton',
+    addressRegion: 'Harare',
+    addressCountry: 'ZW',
+  },
+  telephone: ['+2634620588', '+2638644150770', '+263789158334'],
+  email: 'info@santemedical.co.zw',
+  openingHours: 'Mo-Su 00:00-23:59',
+  medicalSpecialty: ['Emergency Medicine', 'Obstetrics and Gynecology', 'Diagnostic Radiology', 'General Practice'],
 }
 
 export const viewport: Viewport = {
@@ -48,6 +94,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${plusJakartaSans.variable} ${dmSans.variable} bg-background`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="font-sans antialiased">
         <BookingProvider>
           <Navbar />

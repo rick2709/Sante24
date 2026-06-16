@@ -12,7 +12,6 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
-  { href: '/doctors', label: 'Doctors' },
   { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ]
@@ -51,7 +50,7 @@ export function Navbar() {
                 <Plus className="w-5 h-5 text-white" strokeWidth={3} />
               </div>
               <span className={`text-xl font-bold font-heading ${isScrolled ? 'text-[#003366]' : 'text-white'}`}>
-                Sante 24
+                Santé 24
               </span>
             </Link>
 
@@ -85,13 +84,13 @@ export function Navbar() {
             {/* Right Side */}
             <div className="flex items-center gap-4">
               <a
-                href="tel:+263789158334"
+                href="tel:+2634620588"
                 className={`flex items-center gap-2 text-sm font-medium ${
                   isScrolled ? 'text-[#003366]' : 'text-white'
                 }`}
               >
                 <Phone className="w-4 h-4" />
-                <span>+263 78 915 8334</span>
+                <span>04 620588</span>
               </a>
               <Button 
                 onClick={() => openBooking()}
@@ -121,7 +120,7 @@ export function Navbar() {
               <Plus className="w-5 h-5 text-white" strokeWidth={3} />
             </div>
             <span className={`text-lg font-bold font-heading ${isScrolled ? 'text-[#003366]' : 'text-white'}`}>
-              Sante 24
+              Santé 24
             </span>
           </Link>
           <button
@@ -172,11 +171,18 @@ export function Navbar() {
                 </nav>
                 <div className="mt-8 pt-8 border-t border-border">
                   <a
-                    href="tel:+263789158334"
+                    href="tel:+2634620588"
+                    className="flex items-center gap-2 text-[#003366] mb-1"
+                  >
+                    <Phone className="w-5 h-5" />
+                    <span>04 620588</span>
+                  </a>
+                  <a
+                    href="tel:+2638644150770"
                     className="flex items-center gap-2 text-[#003366] mb-4"
                   >
                     <Phone className="w-5 h-5" />
-                    <span>+263 78 915 8334</span>
+                    <span>0864 415 077</span>
                   </a>
                   <Button 
                     onClick={() => {
