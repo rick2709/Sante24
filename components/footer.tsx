@@ -1,7 +1,8 @@
 "use client"
 
 import Link from 'next/link'
-import { Plus, Facebook, Instagram, Twitter } from 'lucide-react'
+import Image from 'next/image'
+import { Facebook, Instagram, Twitter } from 'lucide-react'
 
 const quickLinks = [
   { href: '/', label: 'Home' },
@@ -36,11 +37,15 @@ export function Footer() {
           <div className="grid grid-cols-4 gap-12">
             {/* Logo & Tagline */}
             <div>
-              <Link href="/" className="flex items-center gap-2 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-[#00B4A6] flex items-center justify-center">
-                  <Plus className="w-6 h-6 text-white" strokeWidth={3} />
-                </div>
-                <span className="text-2xl font-bold font-heading">Santé 24</span>
+              <Link href="/" className="inline-block mb-4">
+                <Image
+                  src="/logo.jpg"
+                  alt="Santé 24hr Medical Centre logo"
+                  width={180}
+                  height={68}
+                  className="h-14 w-auto"
+                  style={{ mixBlendMode: 'screen' }}
+                />
               </Link>
               <p className="text-white/70 text-sm leading-relaxed mb-6">
                 Licensed 24-hour medical centre at Shop 5, Southerton Shopping Centre, Harare. Serving the community since 19 October 2016.
@@ -168,6 +173,16 @@ export function Footer() {
 
       {/* Mobile Footer — Minimal */}
       <footer className="md:hidden bg-[#003366] text-white py-6 px-4 text-center">
+        <div className="flex justify-center mb-3">
+          <Image
+            src="/logo.jpg"
+            alt="Santé 24hr Medical Centre logo"
+            width={160}
+            height={60}
+            className="h-12 w-auto"
+            style={{ mixBlendMode: 'screen' }}
+          />
+        </div>
         <p className="text-xs text-white/50 mb-3 leading-relaxed">
           Sante Healthlife (Private) Limited, trading as Santé 24hr Medical Centre. Licensed by the HPA of Zimbabwe and registered with MDPCZ.
         </p>

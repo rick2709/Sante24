@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, Menu, X, Plus } from 'lucide-react'
@@ -15,6 +16,31 @@ const navLinks = [
   { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ]
+
+function LogoDark() {
+  return (
+    <Image
+      src="/logo.jpg"
+      alt="Santé 24hr Medical Centre logo"
+      width={160}
+      height={60}
+      className="h-12 w-auto"
+      style={{ mixBlendMode: 'screen' }}
+      priority
+    />
+  )
+}
+
+function LogoLight() {
+  return (
+    <div className="flex items-center gap-2">
+      <div className="w-8 h-8 rounded-lg bg-[#00B4A6] flex items-center justify-center">
+        <Plus className="w-5 h-5 text-white" strokeWidth={3} />
+      </div>
+      <span className="text-xl font-bold font-heading text-[#003366]">Santé 24</span>
+    </div>
+  )
+}
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -37,21 +63,16 @@ export function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-50 hidden md:block transition-all duration-300 ${
-          isScrolled 
-            ? 'glass border-b border-border shadow-lg' 
+          isScrolled
+            ? 'glass border-b border-border shadow-lg'
             : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-7xl mx-auto px-6 py-2">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
-              <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${isScrolled ? 'bg-[#00B4A6]' : 'bg-[#00B4A6]'}`}>
-                <Plus className="w-5 h-5 text-white" strokeWidth={3} />
-              </div>
-              <span className={`text-xl font-bold font-heading ${isScrolled ? 'text-[#003366]' : 'text-white'}`}>
-                Santé 24
-              </span>
+            <Link href="/" className="flex items-center">
+              {isScrolled ? <LogoLight /> : <LogoDark />}
             </Link>
 
             {/* Nav Links */}
@@ -61,12 +82,12 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={`text-sm font-medium transition-colors relative ${
-                    isScrolled 
-                      ? pathname === link.href 
-                        ? 'text-[#00B4A6]' 
+                    isScrolled
+                      ? pathname === link.href
+                        ? 'text-[#00B4A6]'
                         : 'text-[#003366] hover:text-[#00B4A6]'
-                      : pathname === link.href 
-                        ? 'text-[#00B4A6]' 
+                      : pathname === link.href
+                        ? 'text-[#00B4A6]'
                         : 'text-white/90 hover:text-white'
                   }`}
                 >
@@ -92,7 +113,7 @@ export function Navbar() {
                 <Phone className="w-4 h-4" />
                 <span>04 620588</span>
               </a>
-              <Button 
+              <Button
                 onClick={() => openBooking()}
                 className="bg-[#00B4A6] hover:bg-[#009688] text-white rounded-full px-6"
               >
@@ -103,25 +124,24 @@ export function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Mobile Header - Hidden on desktop, shown above mobile nav */}
+      {/* Mobile Header */}
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className={`fixed top-0 left-0 right-0 z-50 md:hidden transition-all duration-300 ${
-          isScrolled 
-            ? 'glass border-b border-border shadow-lg' 
+          isScrolled
+            ? 'glass border-b border-border shadow-lg'
             : 'bg-[#003366]'
         }`}
       >
-        <div className="px-4 py-3 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-[#00B4A6] flex items-center justify-center">
-              <Plus className="w-5 h-5 text-white" strokeWidth={3} />
-            </div>
-            <span className={`text-lg font-bold font-heading ${isScrolled ? 'text-[#003366]' : 'text-white'}`}>
-              Santé 24
-            </span>
+        <div className="px-4 py-2 flex items-center justify-between">
+          <Link href="/">
+            {isScrolled ? (
+              <LogoLight />
+            ) : (
+              <LogoDark />
+            )}
           </Link>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -141,9 +161,9 @@ export function Navbar() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-40 md:hidden"
           >
-            <div 
-              className="absolute inset-0 bg-black/50" 
-              onClick={() => setIsMobileMenuOpen(false)} 
+            <div
+              className="absolute inset-0 bg-black/50"
+              onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.div
               initial={{ x: '100%' }}
@@ -160,8 +180,8 @@ export function Navbar() {
                       href={link.href}
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`text-lg font-medium py-2 px-4 rounded-lg transition-colors ${
-                        pathname === link.href 
-                          ? 'bg-[#00B4A6]/10 text-[#00B4A6]' 
+                        pathname === link.href
+                          ? 'bg-[#00B4A6]/10 text-[#00B4A6]'
                           : 'text-[#003366] hover:bg-gray-100'
                       }`}
                     >
@@ -170,21 +190,15 @@ export function Navbar() {
                   ))}
                 </nav>
                 <div className="mt-8 pt-8 border-t border-border">
-                  <a
-                    href="tel:+2634620588"
-                    className="flex items-center gap-2 text-[#003366] mb-1"
-                  >
+                  <a href="tel:+2634620588" className="flex items-center gap-2 text-[#003366] mb-1">
                     <Phone className="w-5 h-5" />
                     <span>04 620588</span>
                   </a>
-                  <a
-                    href="tel:+2638644150770"
-                    className="flex items-center gap-2 text-[#003366] mb-4"
-                  >
+                  <a href="tel:+2638644150770" className="flex items-center gap-2 text-[#003366] mb-4">
                     <Phone className="w-5 h-5" />
                     <span>0864 415 077</span>
                   </a>
-                  <Button 
+                  <Button
                     onClick={() => {
                       setIsMobileMenuOpen(false)
                       openBooking()
