@@ -113,7 +113,7 @@ export default function AboutPage() {
             >
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=900&q=80"
+                  src="https://imgs.search.brave.com/qfJWffup35ABFZmvhcQqdY_ZgQM2yMfusXOCQJn5OgE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTc2/NjYwMzI5Ni9waG90/by9ibGFjay13b21h/bi1wYXRpZW50LWFu/ZC1kb2N0b3Itd2l0/aC1zbWlsZS1jb25z/dWx0YXRpb24tYW5k/LWhlYXJ0LWVtb2pp/LWZvci1jYXJkaW8t/aGVhbHRoLmpwZz9z/PTYxMng2MTImdz0w/Jms9MjAmYz1ndTVx/Yy1FeTVsRDNSQkpI/dU5hZnRGYXliZDcz/OFc5QlFZejNNT1NK/SlVRPQ"
                   alt="Medical team at Santé 24hr Medical Centre, Southerton, Harare"
                   width={900}
                   height={600}

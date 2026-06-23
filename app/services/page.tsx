@@ -66,7 +66,7 @@ const medicalServices = [
     icon: Scissors,
     name: 'Operating Theatre & Surgical Procedures',
     shortDesc: 'Fully equipped theatre for minor and major surgery',
-    image: 'https://images.unsplash.com/photo-1578496479914-7ef3b0193be3?w=800&q=80',
+    image: 'https://imgs.search.brave.com/L8i7T5M6wKALNlDUA8GDF-6WsuAeSYY1Rcqjq-ECUUk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy90/aHVtYi85LzliL1Ro/YWlsYW5kX05vbnRo/YWJ1cmlfJUUwJUI4/JUE4JUUwJUI4JUI5/JUUwJUI4JTk5JUUw/JUI4JUEyJUUwJUI5/JThDJUUwJUI4JTgx/JUUwJUI4JUIyJUUw/JUI4JUEzJUUwJUI5/JTgxJUUwJUI4JTlF/JUUwJUI4JTk3JUUw/JUI4JUEyJUUwJUI5/JThDJUUwJUI4JTlC/JUUwJUI4JUIxJUUw/JUI4JThEJUUwJUI4/JThEJUUwJUI4JUIy/JUUwJUI4JTk5JUUw/JUI4JUIxJUUwJUI4/JTk5JUUwJUI4JTk3/JUUwJUI4JUEwJUUw/JUI4JUI0JUUwJUI4/JTgxJUUwJUI4JTgy/JUUwJUI4JUI4XyVF/MCVCOCU4QSVFMCVC/OCVBNSVFMCVCOCU5/QiVFMCVCOCVBMyVF/MCVCOCVCMCVFMCVC/OCU5NyVFMCVCOCVC/MiVFMCVCOCU5OV8l/MjglRTAlQjglOTgl/RTAlQjglQjElRTAl/QjglOTklRTAlQjgl/QTclRTAlQjglQjIl/RTAlQjglODQlRTAl/QjglQTFfMjAyMiUy/OV9vcGVyYXRpbmdf/cm9vbS5qcGcvMTI4/MHB4LXRodW1ibmFp/bC5qcGc',
     imageAlt: 'Surgical team in the operating theatre at Santé 24hr Medical Centre',
     description:
       'Santé 24 houses a fully equipped operating theatre capable of handling both minor and major surgical procedures. Our sterile procedure rooms, professional anaesthesia support, and dedicated recovery care ensure patient safety and comfort throughout. Whether your procedure is planned or urgent, our surgical team is on hand to deliver expert care in a properly equipped environment.',
@@ -85,7 +85,7 @@ const medicalServices = [
     icon: UserCheck,
     name: 'Specialist Consultations',
     shortDesc: 'Multi-discipline specialist access and referrals',
-    image: 'https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&q=80',
+    image: 'https://imgs.search.brave.com/qfJWffup35ABFZmvhcQqdY_ZgQM2yMfusXOCQJn5OgE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTc2/NjYwMzI5Ni9waG90/by9ibGFjay13b21h/bi1wYXRpZW50LWFu/ZC1kb2N0b3Itd2l0/aC1zbWlsZS1jb25z/dWx0YXRpb24tYW5k/LWhlYXJ0LWVtb2pp/LWZvci1jYXJkaW8t/aGVhbHRoLmpwZz9z/PTYxMng2MTImdz0w/Jms9MjAmYz1ndTVx/Yy1FeTVsRDNSQkpI/dU5hZnRGYXliZDcz/OFc5QlFZejNNT1NK/SlVRPQ',
     imageAlt: 'Specialist physician consulting a patient at Santé 24hr Medical Centre',
     description:
       'We provide access to a range of specialist consultations across multiple medical disciplines, either directly at our facility or through our referral network. Whether you need a second opinion, specialist follow-up, or a formal referral, our team coordinates your care to ensure continuity and the best clinical outcome.',
@@ -107,7 +107,7 @@ const maternityServices = [
     icon: Baby,
     name: 'Antenatal & Postnatal Care',
     shortDesc: 'Complete care for mothers throughout pregnancy and after delivery',
-    image: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=800&q=80',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOA1RsOkri5FQSyG4VYCaED2bD7baj2C6RF-7fGzItQA&s=10',
     imageAlt: 'African mother receiving antenatal care at Santé 24 Maternity Hospital',
     description:
       'Our maternity team provides comprehensive antenatal monitoring and postnatal support for every mother. From your first trimester through to your postnatal recovery, we offer scheduled check-ups, nutritional guidance, high-risk pregnancy management, and responsive care whenever concerns arise. Our postnatal programme ensures both mother and newborn are thriving before, during, and after discharge.',
@@ -145,7 +145,7 @@ const maternityServices = [
     icon: Stethoscope,
     name: 'Gynaecology & Obstetrics',
     shortDesc: 'Specialist care for women\'s reproductive health',
-    image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800&q=80',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGKVUWXXAxD8JbIu3MmBzRQAgxvzdZzTr8dsiZhhOESw&s=10',
     imageAlt: 'Gynaecologist consulting a patient at Santé 24 Maternity Hospital',
     description:
       'Our gynaecology and obstetrics service offers specialist care for women at every stage of reproductive health. From routine gynaecological examinations and contraception management to complex obstetric conditions and surgical gynaecological procedures, our specialists provide evidence-based, compassionate care. We treat a wide range of conditions including PCOS, fibroids, endometriosis, and menstrual disorders.',
@@ -164,7 +164,7 @@ const maternityServices = [
     icon: ScanLine,
     name: 'Ultrasound Scanning with Doppler Studies',
     shortDesc: 'Advanced obstetric and diagnostic ultrasound with Doppler',
-    image: 'https://images.unsplash.com/photo-1581056771107-24ca5f033842?w=800&q=80',
+    image: 'https://cdn11.bigcommerce.com/s-j7315y43lw/product_images/uploaded_images/a1ybtzqyg1w84vy20vykd7zazrtllr1g1662488600.jpg',
     imageAlt: 'Ultrasound scan being performed at Santé 24 Maternity Hospital',
     description:
       'Our ultrasound suite offers advanced scanning services for both obstetric and general diagnostic purposes. We use modern equipment to provide detailed foetal assessments, Doppler blood flow studies, abdominal scans, and soft tissue imaging. Results are interpreted by experienced clinicians and reported promptly to ensure timely clinical decision-making.',
@@ -183,7 +183,7 @@ const maternityServices = [
     icon: Users,
     name: 'Family Planning Services',
     shortDesc: 'Confidential counselling and contraception support',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80',
+    image: 'https://aar-healthcare.ug/wp-content/uploads/2025/04/Family-Planning-Services.jpg',
     imageAlt: 'Family planning consultation at Santé 24 Maternity Hospital, Harare',
     description:
       'Our family planning service provides confidential, non-judgmental counselling and contraception management for couples and individuals. We offer a full range of modern contraceptive options and guidance to help patients make informed, empowered decisions about their reproductive health. Our team takes a culturally sensitive and practical approach tailored to each patient\'s circumstances.',
