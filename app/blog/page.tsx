@@ -1,390 +1,193 @@
 "use client"
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Clock, ArrowRight, Mail } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { useState, useEffect } from "react"
+import type { Post } from "@/lib/posts"
+import Image from "next/image"
+import Link from "next/link"
+import { Clock, ArrowRight, Loader2 } from "lucide-react"
 
-const categories = [
-  'All',
-  'Nutrition',
-  'Mental Health',
-  'Maternal Care',
-  'Emergency Tips',
-  'Paediatrics',
+const CATEGORIES = [
+  { name: "All", description: "Browse all health articles from the Santé 24 medical team." },
+  { name: "General Health & Wellness", description: "Everyday tips for living a healthier, happier life in Zimbabwe." },
+  { name: "Emergency Care", description: "Know when and how to act fast — emergency guidance from our 24-hour team." },
+  { name: "Women's Health & Maternity", description: "Antenatal care, postnatal recovery, and women's health across every life stage." },
+  { name: "Child Health & Paediatrics", description: "Vaccinations, growth, nutrition, and caring for your child's health." },
+  { name: "Chronic Disease Management", description: "Managing diabetes, hypertension, and other long-term conditions effectively." },
+  { name: "Diagnostics & Lab", description: "Understanding your test results and the importance of early diagnostics." },
+  { name: "Surgery & Procedures", description: "What to expect before, during, and after a surgical procedure at Santé 24." },
+  { name: "Mental Health", description: "Breaking the stigma and supporting mental wellbeing in our community." },
+  { name: "Health Tips & Prevention", description: "Practical preventive health advice tailored for life in Harare." },
 ]
 
-const blogPosts = [
-  {
-    id: 1,
-    title: 'Understanding Malaria Prevention in Urban Harare',
-    excerpt: 'Essential tips for protecting your family from malaria during the rainy season. Learn about mosquito control and preventive measures.',
-    category: 'Emergency Tips',
-    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80',
-    imageAlt: 'Medical professional reviewing health data in a clinic',
-    author: {
-      name: 'Santé 24 Health Team',
-      image: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=100&q=80',
-    },
-    date: 'April 10, 2025',
-    readTime: '5 min read',
-    featured: true,
-  },
-  {
-    id: 2,
-    title: '5 Signs You Should Visit Emergency Care Immediately',
-    excerpt: 'Know when to seek urgent medical attention and what symptoms require immediate care at our 24-hour facility.',
-    category: 'Emergency Tips',
-    image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800&q=80',
-    imageAlt: 'African family receiving health guidance from a doctor',
-    author: {
-      name: 'Santé 24 Emergency Team',
-      image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=100&q=80',
-    },
-    date: 'April 8, 2025',
-    readTime: '4 min read',
-    featured: false,
-  },
-  {
-    id: 3,
-    title: 'Maternal Health: What Every Zimbabwean Mother Should Know',
-    excerpt: 'A comprehensive guide to prenatal care and healthy pregnancy practices for expecting mothers in Zimbabwe.',
-    category: 'Maternal Care',
-    image: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=800&q=80',
-    imageAlt: 'African woman in wellness and maternal health care setting',
-    author: {
-      name: 'Santé 24 Maternity Team',
-      image: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=100&q=80',
-    },
-    date: 'April 5, 2025',
-    readTime: '7 min read',
-    featured: false,
-  },
-  {
-    id: 4,
-    title: 'Managing Diabetes in the Zimbabwean Diet',
-    excerpt: 'Practical dietary advice for managing diabetes while enjoying traditional Zimbabwean foods.',
-    category: 'Nutrition',
-    image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80',
-    imageAlt: 'Laboratory and diagnostic testing equipment at Sante 24',
-    author: {
-      name: 'Santé 24 Health Team',
-      image: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=100&q=80',
-    },
-    date: 'April 2, 2025',
-    readTime: '6 min read',
-    featured: false,
-  },
-  {
-    id: 5,
-    title: "Children's Vaccinations: A Parent's Complete Guide",
-    excerpt: 'Everything parents need to know about childhood immunizations and the vaccination schedule in Zimbabwe.',
-    category: 'Paediatrics',
-    image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=800&q=80',
-    imageAlt: 'African child receiving paediatric care at a clinic',
-    author: {
-      name: 'Santé 24 Paediatric Team',
-      image: 'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?w=100&q=80',
-    },
-    date: 'March 28, 2025',
-    readTime: '8 min read',
-    featured: false,
-  },
-  {
-    id: 6,
-    title: 'Mental Health: Breaking the Stigma in Our Communities',
-    excerpt: 'Why mental health matters and how we can create more supportive communities for those struggling.',
-    category: 'Mental Health',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80',
-    imageAlt: 'African man in a mental wellness support session',
-    author: {
-      name: 'Santé 24 Health Team',
-      image: 'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=100&q=80',
-    },
-    date: 'March 25, 2025',
-    readTime: '5 min read',
-    featured: false,
-  },
-]
-
-const recentPosts = blogPosts.slice(0, 4)
-const popularCategories = ['Emergency Tips', 'Maternal Care', 'Nutrition', 'Paediatrics']
+const CAT_COLORS: Record<string, string> = {
+  "General Health & Wellness":   "bg-teal-100 text-teal-800",
+  "Emergency Care":              "bg-red-100 text-red-800",
+  "Women's Health & Maternity":  "bg-pink-100 text-pink-800",
+  "Child Health & Paediatrics":  "bg-blue-100 text-blue-800",
+  "Chronic Disease Management":  "bg-orange-100 text-orange-800",
+  "Diagnostics & Lab":           "bg-violet-100 text-violet-800",
+  "Surgery & Procedures":        "bg-amber-100 text-amber-800",
+  "Mental Health":               "bg-purple-100 text-purple-800",
+  "Health Tips & Prevention":    "bg-green-100 text-green-800",
+}
 
 export default function BlogPage() {
-  const [selectedCategory, setSelectedCategory] = useState('All')
-  const [email, setEmail] = useState('')
+  const [allPosts, setAllPosts] = useState<Post[]>([])
+  const [loading, setLoading] = useState(true)
+  const [activeCategory, setActiveCategory] = useState("All")
+  const [visibleCount, setVisibleCount] = useState(6)
 
-  const featuredPost = blogPosts.find(post => post.featured)
-  const filteredPosts = blogPosts.filter(post => {
-    if (selectedCategory === 'All') return !post.featured
-    return post.category === selectedCategory && !post.featured
-  })
+  useEffect(() => {
+    fetch('/api/posts')
+      .then(r => r.json())
+      .then(data => {
+        const posts = data
+          .map((p: Record<string, unknown>) => ({
+            ...p,
+            readTime: p.read_time || '5 min read',
+          }))
+          .sort((a: Record<string, unknown>, b: Record<string, unknown>) =>
+            new Date(b.date as string).getTime() - new Date(a.date as string).getTime()
+          )
+        setAllPosts(posts)
+        setLoading(false)
+      })
+      .catch(() => setLoading(false))
+  }, [])
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setEmail('')
-    alert('Thank you for subscribing to Sante 24 health updates!')
-  }
+  const filtered = activeCategory === "All"
+    ? allPosts
+    : allPosts.filter((p) => p.category === activeCategory)
+
+  const activeDesc = CATEGORIES.find(c => c.name === activeCategory)?.description || ""
+  const featured = allPosts.find(p => p.featured) ?? allPosts[0]
+  const gridPosts = filtered.slice(0, visibleCount)
 
   return (
     <>
-      {/* Hero Banner */}
-      <section className="relative bg-gradient-to-br from-[#003366] to-[#005599] pt-32 pb-20 grain-overlay">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
-              Health Insights & News
-            </h1>
-            <p className="text-white/80 text-lg max-w-2xl mx-auto">
-              Expert health advice from the Sante 24 team to help you live your healthiest life.
-            </p>
-          </motion.div>
+      {/* Hero */}
+      <section className="relative bg-gradient-to-br from-[#003366] to-[#005599] pt-32 pb-20">
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#00B4A6]">Health Insights</p>
+          <h1 className="mb-6 text-4xl font-heading font-bold text-white md:text-5xl lg:text-6xl">
+            Health Blog & <span className="text-[#00B4A6]">News</span>
+          </h1>
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-white/80">
+            Expert health advice, medical guides, and wellness tips from the Santé 24 team.
+          </p>
         </div>
       </section>
 
-      {/* Category Filter */}
-      <section className="py-6 border-b border-border sticky top-14 md:top-[72px] bg-white z-30">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <div className="flex overflow-x-auto gap-2 pb-2 -mx-4 px-4 md:mx-0 md:px-0 no-scrollbar">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`flex-shrink-0 px-5 py-2 rounded-full font-medium text-sm transition-all ${
-                  selectedCategory === category
-                    ? 'bg-[#00B4A6] text-white'
-                    : 'bg-[#F7F9FC] text-[#003366] hover:bg-[#00B4A6]/10'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+      {loading && (
+        <section className="flex items-center justify-center py-32">
+          <Loader2 className="h-8 w-8 animate-spin text-[#00B4A6]" />
+        </section>
+      )}
+
+      {/* Featured post */}
+      {!loading && featured && (
+        <section className="bg-white py-16">
+          <div className="mx-auto max-w-7xl px-6">
+            <Link href={`/blog/${featured.id}`} className="group grid overflow-hidden rounded-2xl border border-gray-200 bg-white md:grid-cols-2 hover:shadow-xl transition-all duration-300">
+              <div className="relative h-72 overflow-hidden md:h-auto">
+                <Image src={featured.image} alt={featured.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute top-4 left-4">
+                  <span className="rounded-full bg-[#00B4A6] px-3 py-1 text-xs font-bold text-white">
+                    Featured
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col justify-center p-8 md:p-12">
+                <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#00B4A6]">Featured Post</p>
+                <h2 className="mb-4 font-heading text-2xl font-bold text-[#003366] transition-colors group-hover:text-[#00B4A6] md:text-3xl">
+                  {featured.title}
+                </h2>
+                <p className="mb-6 leading-relaxed text-gray-500">{featured.excerpt}</p>
+                <div className="flex items-center gap-4 text-sm text-gray-400">
+                  <span>{featured.date}</span>
+                  <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5" />{featured.readTime}</span>
+                </div>
+                <span className="mt-6 inline-flex w-fit items-center gap-2 text-sm font-semibold text-[#00B4A6] transition-all group-hover:gap-3">
+                  Read Article <ArrowRight className="h-4 w-4" />
+                </span>
+              </div>
+            </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Blog Content */}
-      <section className="py-12 md:py-20">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <div className="grid lg:grid-cols-[1fr_320px] gap-12">
-            {/* Main Content */}
-            <div>
-              {/* Featured Post */}
-              {featuredPost && selectedCategory === 'All' && (
-                <motion.article
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
-                  className="mb-12"
+      {/* Category filters + grid */}
+      {!loading && (
+        <section className="bg-[#F7F9FC] py-16">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="mb-8 flex flex-wrap justify-center gap-3">
+              {CATEGORIES.map((cat) => (
+                <button
+                  key={cat.name}
+                  onClick={() => { setActiveCategory(cat.name); setVisibleCount(6) }}
+                  className={`rounded-full px-5 py-2.5 text-sm font-medium transition-all ${
+                    activeCategory === cat.name
+                      ? "bg-[#003366] text-white"
+                      : "border border-gray-200 bg-white text-gray-500 hover:border-[#00B4A6] hover:text-[#003366]"
+                  }`}
                 >
-                  <Link href="#" className="group block">
-                    <div className="relative rounded-2xl overflow-hidden mb-6">
-                      <Image
-                        src={featuredPost.image}
-                        alt={featuredPost.imageAlt}
-                        width={800}
-                        height={450}
-                        className="w-full h-[300px] md:h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src =
-                            'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80'
-                        }}
-                      />
-                      <div className="absolute top-4 left-4">
-                        <span className="px-4 py-1.5 bg-[#FF6B6B] text-white text-sm font-medium rounded-full">
-                          Featured
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="px-3 py-1 bg-[#00B4A6]/10 text-[#00B4A6] text-xs font-medium rounded-full">
-                        {featuredPost.category}
-                      </span>
-                      <span className="text-muted-foreground text-sm">{featuredPost.date}</span>
-                      <span className="flex items-center gap-1 text-muted-foreground text-sm">
-                        <Clock className="w-3 h-3" />
-                        {featuredPost.readTime}
-                      </span>
-                    </div>
-                    <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#003366] mb-3 group-hover:text-[#00B4A6] transition-colors">
-                      {featuredPost.title}
-                    </h2>
-                    <p className="text-muted-foreground mb-4">{featuredPost.excerpt}</p>
-                    <div className="flex items-center gap-3">
-                      <Image
-                        src={featuredPost.author.image}
-                        alt={featuredPost.author.name}
-                        width={40}
-                        height={40}
-                        className="w-10 h-10 rounded-full object-cover"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src =
-                            'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&q=80'
-                        }}
-                      />
-                      <span className="text-[#003366] font-medium text-sm">{featuredPost.author.name}</span>
-                    </div>
-                  </Link>
-                </motion.article>
-              )}
+                  {cat.name}
+                </button>
+              ))}
+            </div>
 
-              {/* Blog Grid */}
-              <div className="grid md:grid-cols-2 gap-8">
-                {filteredPosts.map((post, index) => (
-                  <motion.article
+            <div className="mb-12 text-center">
+              <p className="text-gray-500">{activeDesc}</p>
+            </div>
+
+            {gridPosts.length === 0 ? (
+              <div className="py-20 text-center text-gray-400">No articles in this category yet.</div>
+            ) : (
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {gridPosts.map((post) => (
+                  <Link
                     key={post.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="group"
+                    href={`/blog/${post.id}`}
+                    className="group overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                   >
-                    <Link href="#">
-                      <div className="relative rounded-2xl overflow-hidden mb-4 border-2 border-transparent group-hover:border-[#00B4A6] transition-colors">
-                        <Image
-                          src={post.image}
-                          alt={post.imageAlt}
-                          width={400}
-                          height={250}
-                          loading="lazy"
-                          className="w-full h-[200px] object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src =
-                              'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80'
-                          }}
-                        />
-                        <div className="absolute top-3 left-3">
-                          <span className="px-3 py-1 bg-[#00B4A6] text-white text-xs font-medium rounded-full">
+                    <article>
+                      <div className="relative h-52 overflow-hidden">
+                        <Image src={post.image} alt={post.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <div className="absolute top-4 left-4">
+                          <span className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wide ${CAT_COLORS[post.category] || 'bg-gray-100 text-gray-700'}`}>
                             {post.category}
                           </span>
                         </div>
                       </div>
-                      <h3 className="font-heading font-bold text-lg text-[#003366] mb-2 group-hover:text-[#00B4A6] transition-colors line-clamp-2">
-                        {post.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{post.excerpt}</p>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <Image
-                            src={post.author.image}
-                            alt={post.author.name}
-                            width={24}
-                            height={24}
-                            className="w-6 h-6 rounded-full object-cover"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).src =
-                                'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=100&q=80'
-                            }}
-                          />
-                          <span className="text-muted-foreground text-xs">{post.author.name}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <div className="p-6">
+                        <h3 className="mb-2 font-heading text-lg font-bold leading-snug text-[#003366] transition-colors group-hover:text-[#00B4A6]">
+                          {post.title}
+                        </h3>
+                        <p className="mb-4 text-sm leading-relaxed text-gray-500 line-clamp-2">{post.excerpt}</p>
+                        <div className="flex items-center gap-4 text-xs text-gray-400">
                           <span>{post.date}</span>
-                          <span className="flex items-center gap-1">
-                            <Clock className="w-3 h-3" />
-                            {post.readTime}
-                          </span>
+                          <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{post.readTime}</span>
                         </div>
                       </div>
-                    </Link>
-                  </motion.article>
+                    </article>
+                  </Link>
                 ))}
               </div>
+            )}
 
-              {filteredPosts.length === 0 && (
-                <div className="text-center py-16">
-                  <p className="text-muted-foreground">No articles found in this category.</p>
-                </div>
-              )}
-            </div>
-
-            {/* Sidebar — Desktop Only */}
-            <aside className="hidden lg:block">
-              <div className="sticky top-40 space-y-8">
-                {/* Recent Posts */}
-                <div className="bg-[#F7F9FC] rounded-2xl p-6">
-                  <h3 className="font-heading font-bold text-lg text-[#003366] mb-4">Recent Posts</h3>
-                  <div className="space-y-4">
-                    {recentPosts.map((post) => (
-                      <Link key={post.id} href="#" className="flex gap-3 group">
-                        <Image
-                          src={post.image}
-                          alt={post.imageAlt}
-                          width={80}
-                          height={60}
-                          loading="lazy"
-                          className="w-20 h-16 rounded-lg object-cover flex-shrink-0"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).src =
-                              'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80'
-                          }}
-                        />
-                        <div>
-                          <h4 className="font-medium text-sm text-[#003366] group-hover:text-[#00B4A6] transition-colors line-clamp-2">
-                            {post.title}
-                          </h4>
-                          <p className="text-xs text-muted-foreground mt-1">{post.date}</p>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Popular Categories */}
-                <div className="bg-[#F7F9FC] rounded-2xl p-6">
-                  <h3 className="font-heading font-bold text-lg text-[#003366] mb-4">Popular Categories</h3>
-                  <div className="space-y-2">
-                    {popularCategories.map((category) => (
-                      <button
-                        key={category}
-                        onClick={() => setSelectedCategory(category)}
-                        className="flex items-center justify-between w-full p-3 rounded-xl hover:bg-white transition-colors text-left"
-                      >
-                        <span className="text-[#003366] font-medium text-sm">{category}</span>
-                        <ArrowRight className="w-4 h-4 text-[#00B4A6]" />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Newsletter Signup */}
-                <div className="bg-[#003366] rounded-2xl p-6">
-                  <div className="w-12 h-12 rounded-full bg-[#00B4A6] flex items-center justify-center mb-4">
-                    <Mail className="w-6 h-6 text-white" />
-                  </div>
-                  <h3 className="font-heading font-bold text-lg text-white mb-2">Subscribe to Newsletter</h3>
-                  <p className="text-white/70 text-sm mb-4">Get health tips delivered to your inbox weekly.</p>
-                  <form onSubmit={handleNewsletterSubmit} className="space-y-3">
-                    <Input
-                      type="email"
-                      placeholder="Your email address"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      className="bg-white/10 border-white/20 text-white placeholder:text-white/50 rounded-xl"
-                    />
-                    <Button
-                      type="submit"
-                      className="w-full bg-[#00B4A6] hover:bg-[#009688] text-white rounded-full"
-                    >
-                      Subscribe
-                    </Button>
-                  </form>
-                </div>
+            {visibleCount < filtered.length && (
+              <div className="mt-12 text-center">
+                <button
+                  onClick={() => setVisibleCount((prev) => prev + 3)}
+                  className="inline-flex items-center gap-2 rounded-lg border-2 border-[#003366] px-8 py-3 font-semibold text-[#003366] transition-all hover:bg-[#003366] hover:text-white"
+                >
+                  Load More Articles
+                </button>
               </div>
-            </aside>
+            )}
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   )
 }
