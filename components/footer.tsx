@@ -39,12 +39,11 @@ export function Footer() {
             <div>
               <Link href="/" className="inline-block mb-4">
                 <Image
-                  src="/logo.jpg"
+                  src="/logo.png"
                   alt="Santé 24hr Medical Centre logo"
-                  width={180}
-                  height={68}
-                  className="h-14 w-auto"
-                  style={{ mixBlendMode: 'screen' }}
+                  width={360}
+                  height={136}
+                  className="h-28 w-auto"
                 />
               </Link>
               <p className="text-white/70 text-sm leading-relaxed mb-6">
@@ -175,12 +174,11 @@ export function Footer() {
       <footer className="md:hidden bg-[#003366] text-white py-6 px-4 text-center">
         <div className="flex justify-center mb-3">
           <Image
-            src="/logo.jpg"
+            src="/logo.png"
             alt="Santé 24hr Medical Centre logo"
-            width={160}
-            height={60}
-            className="h-12 w-auto"
-            style={{ mixBlendMode: 'screen' }}
+            width={320}
+            height={120}
+            className="h-24 w-auto"
           />
         </div>
         <p className="text-xs text-white/50 mb-3 leading-relaxed">

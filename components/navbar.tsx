@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Phone, Menu, X, Plus } from 'lucide-react'
+import { Phone, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useBooking } from './booking-context'
 
@@ -17,28 +17,17 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ]
 
-function LogoDark() {
+function Logo({ scrolled }: { scrolled: boolean }) {
   return (
     <Image
-      src="/logo.jpg"
+      src="/logo.png"
       alt="Santé 24hr Medical Centre logo"
-      width={160}
-      height={60}
-      className="h-12 w-auto"
-      style={{ mixBlendMode: 'screen' }}
+      width={320}
+      height={120}
+      className="h-24 w-auto"
+      style={scrolled ? { filter: 'drop-shadow(0 0 4px rgba(0,0,0,0.5))' } : undefined}
       priority
     />
-  )
-}
-
-function LogoLight() {
-  return (
-    <div className="flex items-center gap-2">
-      <div className="w-8 h-8 rounded-lg bg-[#00B4A6] flex items-center justify-center">
-        <Plus className="w-5 h-5 text-white" strokeWidth={3} />
-      </div>
-      <span className="text-xl font-bold font-heading text-[#003366]">Santé 24</span>
-    </div>
   )
 }
 
@@ -72,7 +61,7 @@ export function Navbar() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center">
-              {isScrolled ? <LogoLight /> : <LogoDark />}
+              {isScrolled ? <Logo scrolled={isScrolled} /> : <Logo scrolled={isScrolled} />}
             </Link>
 
             {/* Nav Links */}
@@ -138,9 +127,9 @@ export function Navbar() {
         <div className="px-4 py-2 flex items-center justify-between">
           <Link href="/">
             {isScrolled ? (
-              <LogoLight />
+              <Logo scrolled={isScrolled} />
             ) : (
-              <LogoDark />
+              <Logo scrolled={isScrolled} />
             )}
           </Link>
           <button
