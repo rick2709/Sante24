@@ -1,3 +1,6 @@
+# Windows security zone metadata
+*:Zone.Identifier
+
 # v0 sandbox internal files
 __v0_runtime_loader.js
 __v0_devtools.tsx
