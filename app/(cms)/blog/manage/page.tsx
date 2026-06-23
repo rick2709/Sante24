@@ -98,6 +98,7 @@ export default function BlogManagerPage() {
   const autoSaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const isDirty = useRef(false)
   const [mobileView, setMobileView] = useState<'sidebar' | 'editor'>('sidebar')
+  const titleInputRef = useRef<HTMLInputElement>(null)
 
   const showToast = useCallback((msg: string, type: 'success' | 'error' = 'success') => {
     setToast({ msg, type })
@@ -150,6 +151,7 @@ export default function BlogManagerPage() {
     setSaveStatus('idle')
     isDirty.current = false
     setMobileView('editor')
+    setTimeout(() => titleInputRef.current?.focus(), 50)
   }
 
   function updateForm(key: string, value: string | boolean) {
@@ -255,7 +257,7 @@ export default function BlogManagerPage() {
   }, [hasSelection, form, selectedId, isNew])
 
   return (
-    <div className="flex flex-col overflow-hidden bg-white font-sans" style={{ height: '100vh', paddingTop: '64px' }}>
+    <div className="flex flex-col overflow-hidden bg-white font-sans" style={{ height: '100vh' }}>
 
       {/* Top bar */}
       <header className="flex h-auto min-h-14 shrink-0 flex-wrap items-center justify-between gap-2 border-b border-gray-200 bg-[#003366] px-3 py-2 sm:px-4">
@@ -444,6 +446,7 @@ export default function BlogManagerPage() {
                         Title <span className="text-[#00B4A6]">*</span>
                       </label>
                       <input
+                        ref={titleInputRef}
                         value={form.title}
                         onChange={e => updateForm('title', e.target.value)}
                         placeholder="Enter a compelling headline…"

@@ -1,14 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans, DM_Sans } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-import { Navbar } from '@/components/navbar'
-import { Footer } from '@/components/footer'
-import { MobileNav } from '@/components/mobile-nav'
-import { CookieBanner } from '@/components/cookie-banner'
-import { BookingModal } from '@/components/booking-modal'
 import { BookingProvider } from '@/components/booking-context'
-import { WhatsAppFloat } from '@/components/whatsapp-float'
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -102,17 +95,8 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         <BookingProvider>
-          <Navbar />
-          <main className="min-h-screen pb-20 md:pb-0">
-            {children}
-          </main>
-          <Footer />
-          <MobileNav />
-          <BookingModal />
-          <WhatsAppFloat />
-          <CookieBanner />
+          {children}
         </BookingProvider>
-        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )
