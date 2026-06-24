@@ -179,12 +179,12 @@ export function HeroSection() {
               <div>
                 <p className="text-white/70 text-sm">Emergency Hotline — Open 24/7</p>
                 <div className="flex flex-wrap gap-x-3 gap-y-0.5">
-                  <a href="tel:+2634620588" className="text-white font-heading font-bold text-lg hover:text-[#00B4A6] transition-colors">
-                    04 620588
+                  <a href="tel:+263242620588" className="text-white font-heading font-bold text-lg hover:text-[#00B4A6] transition-colors">
+                    0242 620588
                   </a>
                   <span className="text-white/50 font-heading font-bold text-lg">·</span>
-                  <a href="tel:+2638644150770" className="text-white font-heading font-bold text-lg hover:text-[#00B4A6] transition-colors">
-                    0864 415 077
+                  <a href="tel:+263867715077" className="text-white font-heading font-bold text-lg hover:text-[#00B4A6] transition-colors">
+                    0867 715 077
                   </a>
                 </div>
               </div>

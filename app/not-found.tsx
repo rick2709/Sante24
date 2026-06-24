@@ -21,7 +21,7 @@ export default function NotFound() {
         </div>
         <p className="text-sm text-muted-foreground mt-10">
           Need urgent help? Call us on{' '}
-          <a href="tel:+2634620588" className="text-[#00B4A6] hover:underline font-medium">04 620588</a>
+          <a href="tel:+263242620588" className="text-[#00B4A6] hover:underline font-medium">0242 620588</a>
           {' '}— we&apos;re open 24 hours, 365 days a year.
         </p>
       </div>

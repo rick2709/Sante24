@@ -86,7 +86,7 @@ export function BookingModal() {
       `📝 Notes: ${formData.notes || 'None'}\n\n` +
       `Please confirm my appointment. Thank you!`
 
-    window.open(`https://wa.me/263789158334?text=${encodeURIComponent(message)}`, '_blank')
+    window.open(`https://wa.me/263780642725?text=${encodeURIComponent(message)}`, '_blank')
     setIsSubmitted(true)
   }
 

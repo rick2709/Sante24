@@ -94,13 +94,13 @@ export function Navbar() {
             {/* Right Side */}
             <div className="flex items-center gap-4">
               <a
-                href="tel:+2634620588"
+                href="tel:+263242620588"
                 className={`flex items-center gap-2 text-sm font-medium ${
                   isScrolled ? 'text-[#003366]' : 'text-white'
                 }`}
               >
                 <Phone className="w-4 h-4" />
-                <span>04 620588</span>
+                <span>0242 620588</span>
               </a>
               <Button
                 onClick={() => openBooking()}
@@ -179,13 +179,13 @@ export function Navbar() {
                   ))}
                 </nav>
                 <div className="mt-8 pt-8 border-t border-border">
-                  <a href="tel:+2634620588" className="flex items-center gap-2 text-[#003366] mb-1">
+                  <a href="tel:+263242620588" className="flex items-center gap-2 text-[#003366] mb-1">
                     <Phone className="w-5 h-5" />
-                    <span>04 620588</span>
+                    <span>0242 620588</span>
                   </a>
-                  <a href="tel:+2638644150770" className="flex items-center gap-2 text-[#003366] mb-4">
+                  <a href="tel:+263867715077" className="flex items-center gap-2 text-[#003366] mb-4">
                     <Phone className="w-5 h-5" />
-                    <span>0864 415 077</span>
+                    <span>0867 715 077</span>
                   </a>
                   <Button
                     onClick={() => {

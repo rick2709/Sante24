@@ -78,7 +78,7 @@ export function Footer() {
                   <Twitter className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://wa.me/263789158334"
+                  href="https://wa.me/263780642725"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Chat with Santé 24 on WhatsApp"
@@ -133,13 +133,16 @@ export function Footer() {
                 </li>
                 <li>
                   <span className="text-white font-medium block">Phone</span>
-                  <a href="tel:+2634620588" className="block hover:text-[#00B4A6] transition-colors">04 620588</a>
-                  <a href="tel:+2638644150770" className="block hover:text-[#00B4A6] transition-colors">0864 415 077</a>
+                  <a href="tel:+263242620588" className="block hover:text-[#00B4A6] transition-colors">0242 620588</a>
+                  <a href="tel:+263867715077" className="block hover:text-[#00B4A6] transition-colors">0867 715 077</a>
                 </li>
                 <li>
                   <span className="text-white font-medium block">WhatsApp</span>
-                  <a href="https://wa.me/263789158334" className="hover:text-[#00B4A6] transition-colors">
-                    +263 78 915 8334
+                  <a href="https://wa.me/263780642725" className="block hover:text-[#00B4A6] transition-colors">
+                    +263 78 064 2725 · Medical Centre
+                  </a>
+                  <a href="https://wa.me/263785947839" className="block hover:text-[#00B4A6] transition-colors">
+                    +263 78 594 7839 · Maternity
                   </a>
                 </li>
                 <li>
@@ -187,8 +190,8 @@ export function Footer() {
         <p className="text-sm text-white/70">&copy; {new Date().getFullYear()} Santé 24hr Medical Centre</p>
         <p className="text-xs text-white/50 mt-1">Southerton, Harare, Zimbabwe</p>
         <div className="flex justify-center gap-4 mt-2">
-          <a href="tel:+2634620588" className="text-[#00B4A6] text-sm font-medium hover:underline">04 620588</a>
-          <a href="tel:+2638644150770" className="text-[#00B4A6] text-sm font-medium hover:underline">0864 415 077</a>
+          <a href="tel:+263242620588" className="text-[#00B4A6] text-sm font-medium hover:underline">0242 620588</a>
+          <a href="tel:+263867715077" className="text-[#00B4A6] text-sm font-medium hover:underline">0867 715 077</a>
         </div>
       </footer>
     </>

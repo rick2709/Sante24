@@ -68,7 +68,7 @@ const jsonLd = {
     addressRegion: 'Harare',
     addressCountry: 'ZW',
   },
-  telephone: ['+2634620588', '+2638644150770', '+263789158334'],
+  telephone: ['+263242620588', '+263867715077', '+263780642725', '+263785947839'],
   email: 'info@santemedical.co.zw',
   openingHours: 'Mo-Su 00:00-23:59',
   medicalSpecialty: ['Emergency Medicine', 'Obstetrics and Gynecology', 'Diagnostic Radiology', 'General Practice'],

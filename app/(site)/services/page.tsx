@@ -403,7 +403,7 @@ export default function ServicesPage() {
                   </ul>
 
                   <a
-                    href={`https://wa.me/263789158334?text=${waMessage}`}
+                    href={`https://wa.me/263780642725?text=${waMessage}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-3 text-white font-medium text-base px-8 py-4 rounded-full transition-colors"
@@ -436,16 +436,16 @@ export default function ServicesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="tel:+2634620588"
+                href="tel:+263242620588"
                 className="inline-flex items-center justify-center gap-2 bg-white text-[#003366] font-medium px-8 py-3 rounded-full hover:bg-white/90 transition-colors"
               >
-                Call 04 620588
+                Call 0242 620588
               </a>
               <a
-                href="tel:+2638644150770"
+                href="tel:+263867715077"
                 className="inline-flex items-center justify-center gap-2 bg-white/10 text-white font-medium px-8 py-3 rounded-full hover:bg-white/20 transition-colors border border-white/20"
               >
-                Call 0864 415 077
+                Call 0867 715 077
               </a>
             </div>
           </motion.div>

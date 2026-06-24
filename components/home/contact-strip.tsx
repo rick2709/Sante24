@@ -65,8 +65,8 @@ export function ContactStrip() {
                 </div>
                 <div>
                   <p className="font-heading font-bold text-[#003366]">Phone</p>
-                  <a href="tel:+2634620588" className="block text-muted-foreground hover:text-[#00B4A6] transition-colors">04 620588</a>
-                  <a href="tel:+2638644150770" className="block text-muted-foreground hover:text-[#00B4A6] transition-colors">0864 415 077</a>
+                  <a href="tel:+263242620588" className="block text-muted-foreground hover:text-[#00B4A6] transition-colors">0242 620588</a>
+                  <a href="tel:+263867715077" className="block text-muted-foreground hover:text-[#00B4A6] transition-colors">0867 715 077</a>
                 </div>
               </div>
 

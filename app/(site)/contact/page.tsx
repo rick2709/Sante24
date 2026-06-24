@@ -72,7 +72,7 @@ export default function ContactPage() {
       `💬 Message: ${formData.message}\n\n` +
       `Please get back to me. Thank you!`
 
-    window.open(`https://wa.me/263789158334?text=${encodeURIComponent(message)}`, '_blank')
+    window.open(`https://wa.me/263780642725?text=${encodeURIComponent(message)}`, '_blank')
     setIsSubmitted(true)
     setTimeout(() => {
       setIsSubmitted(false)
@@ -111,9 +111,9 @@ export default function ContactPage() {
               <span className="font-heading font-bold text-white">Medical Emergency?</span>
             </div>
             <span className="text-white/90">Call us now:</span>
-            <a href="tel:+2634620588" className="font-bold text-white hover:underline">04 620588</a>
+            <a href="tel:+263242620588" className="font-bold text-white hover:underline">0242 620588</a>
             <span className="text-white/70 hidden sm:inline">or</span>
-            <a href="tel:+2638644150770" className="font-bold text-white hover:underline">0864 415 077</a>
+            <a href="tel:+263867715077" className="font-bold text-white hover:underline">0867 715 077</a>
           </div>
         </div>
       </section>
@@ -267,11 +267,11 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-heading font-bold text-[#003366]">Phone</h3>
-                    <a href="tel:+2634620588" className="block text-muted-foreground hover:text-[#00B4A6] transition-colors mt-1">
-                      04 620588
+                    <a href="tel:+263242620588" className="block text-muted-foreground hover:text-[#00B4A6] transition-colors mt-1">
+                      0242 620588
                     </a>
-                    <a href="tel:+2638644150770" className="block text-muted-foreground hover:text-[#00B4A6] transition-colors">
-                      0864 415 077
+                    <a href="tel:+263867715077" className="block text-muted-foreground hover:text-[#00B4A6] transition-colors">
+                      0867 715 077
                     </a>
                   </div>
                 </div>
@@ -311,15 +311,26 @@ export default function ContactPage() {
                       <p className="text-muted-foreground text-sm mt-0.5 mb-3">
                         Fastest response — usually within minutes
                       </p>
-                      <a
-                        href="https://wa.me/263789158334"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-medium text-sm px-5 py-2.5 rounded-full transition-colors"
-                      >
-                        <WhatsAppIcon />
-                        +263 78 915 8334
-                      </a>
+                      <div className="flex flex-col gap-2">
+                        <a
+                          href="https://wa.me/263780642725"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-medium text-sm px-5 py-2.5 rounded-full transition-colors"
+                        >
+                          <WhatsAppIcon />
+                          +263 78 064 2725 · Medical Centre
+                        </a>
+                        <a
+                          href="https://wa.me/263785947839"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-medium text-sm px-5 py-2.5 rounded-full transition-colors"
+                        >
+                          <WhatsAppIcon />
+                          +263 78 594 7839 · Maternity
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -383,7 +394,7 @@ export default function ContactPage() {
               <div className="bg-white rounded-2xl p-6 shadow-sm">
                 <h3 className="font-heading font-bold text-[#003366] mb-2">Where are you located?</h3>
                 <p className="text-muted-foreground text-sm">
-                  We are at Shop 5, Southerton Shopping Centre, St Johns Way, Southerton, Harare. Call us on <a href="tel:+2634620588" className="text-[#00B4A6] hover:underline">04 620588</a> or <a href="tel:+2638644150770" className="text-[#00B4A6] hover:underline">0864 415 077</a> for directions.
+                  We are at Shop 5, Southerton Shopping Centre, St Johns Way, Southerton, Harare. Call us on <a href="tel:+263242620588" className="text-[#00B4A6] hover:underline">0242 620588</a> or <a href="tel:+263867715077" className="text-[#00B4A6] hover:underline">0867 715 077</a> for directions.
                 </p>
               </div>
             </div>
