@@ -3,6 +3,7 @@
 import { HeroSection } from '@/components/home/hero-section'
 import { QuickAccessCards } from '@/components/home/quick-access-cards'
 import { StatsBanner } from '@/components/home/stats-banner'
+import { VideoTour } from '@/components/home/video-tour'
 import { ServicesSection } from '@/components/home/services-section'
 import { TwoCentres } from '@/components/home/two-centres'
 import { HealthTips } from '@/components/home/health-tips'
@@ -16,6 +17,7 @@ export default function HomePage() {
       <HeroSection />
       <QuickAccessCards />
       <StatsBanner />
+      <VideoTour />
       <ServicesSection />
       <TwoCentres />
       <HealthTips />
