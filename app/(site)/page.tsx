@@ -8,7 +8,6 @@ import { ServicesSection } from '@/components/home/services-section'
 import { TwoCentres } from '@/components/home/two-centres'
 import { HealthTips } from '@/components/home/health-tips'
 import { BlogPreview } from '@/components/home/blog-preview'
-import { Testimonials } from '@/components/home/testimonials'
 import { ContactStrip } from '@/components/home/contact-strip'
 
 export default function HomePage() {
@@ -22,7 +21,6 @@ export default function HomePage() {
       <TwoCentres />
       <HealthTips />
       <BlogPreview />
-      <Testimonials />
       <ContactStrip />
     </>
   )
