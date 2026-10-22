@@ -521,7 +521,7 @@ export default function BlogManagerPage() {
                       <div className="flex gap-3">
                         {/^(\/|https?:\/\/).+/.test(form.image) && (
                           <div className="relative h-16 w-24 shrink-0 overflow-hidden rounded-lg border border-gray-200">
-                            <Image src={form.image} alt="preview" fill className="object-cover" onError={() => {}} />
+                            <Image unoptimized src={form.image} alt="preview" fill className="object-cover" onError={() => {}} />
                           </div>
                         )}
                         <input
@@ -575,7 +575,7 @@ export default function BlogManagerPage() {
                 <div className="flex-1 overflow-y-auto">
                   <div className="relative flex min-h-[280px] items-end bg-[#003366]">
                     {form.image && (
-                      <Image src={form.image} alt={form.title || 'Preview'} fill className="object-cover opacity-40" />
+                      <Image unoptimized src={form.image} alt={form.title || 'Preview'} fill className="object-cover opacity-40" />
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#003366] via-[#003366]/50 to-transparent" />
                     <div className="relative z-10 max-w-3xl px-4 pb-8 pt-16 sm:px-8 sm:pb-10 sm:pt-20">

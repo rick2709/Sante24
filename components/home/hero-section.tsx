@@ -5,6 +5,7 @@ import { ArrowRight, Phone } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useBooking } from '@/components/booking-context'
 import Link from 'next/link'
+import Image from 'next/image'
 
 // One ECG cycle is 34px wide. Generate n repetitions starting at xOffset.
 function buildPolylinePoints(cycles: number, cy: number, amplitude: number): string {
@@ -89,15 +90,31 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-screen overflow-hidden">
-      {/* Full-cover Background Image - African doctor with patient */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=1920&q=85')`,
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-[#003366]/95 via-[#003366]/85 to-[#003366]/70" />
-        <div className="absolute inset-0 bg-black/20" />
+      {/* Full-cover Background Image — real onsite photos (exterior on desktop, entrance sign on mobile) */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/sante/sante24-exterior-building-signage-blue-sky.jpg"
+          alt="Santé 24hr Medical Centre & Maternity Hospital exterior, Southerton, Harare"
+          fill
+          priority
+          quality={85}
+          sizes="(min-width: 768px) 100vw, 1px"
+          className="hidden md:block object-cover object-top"
+        />
+        <Image
+          src="/images/sante/sante24-entrance-signboard-24hr-medical-centre.jpg"
+          alt="Santé 24 Medical Centre entrance sign with 24hr badge, Harare"
+          fill
+          priority
+          quality={85}
+          sizes="(max-width: 767px) 100vw, 1px"
+          className="md:hidden object-cover object-center"
+        />
+        {/* Desktop: left 40% stays bright (billboard), right 60% darkened for the headline */}
+        <div className="absolute inset-0 hidden md:block bg-[linear-gradient(to_right,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_40%,rgba(0,0,0,0.45)_55%,rgba(0,0,0,0.45)_100%)]" />
+        <div className="absolute inset-0 hidden md:block bg-gradient-to-l from-[#003366]/70 via-[#003366]/30 to-transparent" />
+        {/* Mobile: text sits over the whole image */}
+        <div className="absolute inset-0 md:hidden bg-[#003366]/75" />
       </div>
 
       {/* Subtle ambient glow */}
@@ -110,9 +127,9 @@ export function HeroSection() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 pt-32 md:pt-40 pb-20">
-        <div className="flex items-center min-h-[70vh]">
-          {/* Left Content */}
-          <div className="max-w-2xl">
+        <div className="flex items-center md:justify-end min-h-[70vh]">
+          {/* Content — right side on desktop so the billboard stays visible */}
+          <div className="max-w-2xl md:max-w-xl lg:max-w-2xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

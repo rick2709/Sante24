@@ -118,7 +118,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* Hero */}
       <section className="relative flex min-h-[60vh] items-center justify-center overflow-hidden">
-        <Image src={post.image} alt={post.title} fill className="object-cover" priority />
+        <Image unoptimized src={post.image} alt={post.title} fill className="object-cover" priority />
         <div className="absolute inset-0 bg-gradient-to-t from-[#003366] via-[#003366]/60 to-[#003366]/40" />
         <div className="relative z-10 mx-auto max-w-4xl px-6 pt-20 text-center">
           <span className={`mb-6 inline-block rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider ${CAT_COLORS[post.category] || 'bg-[#00B4A6]/20 text-[#00B4A6]'}`}>
@@ -218,7 +218,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   className="group overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                 >
                   <div className="relative h-48 overflow-hidden">
-                    <Image src={related.image} alt={related.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <Image unoptimized src={related.image} alt={related.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                     <div className="absolute top-4 left-4">
                       <span className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wide ${CAT_COLORS[related.category] || 'bg-gray-100 text-gray-700'}`}>
                         {related.category}

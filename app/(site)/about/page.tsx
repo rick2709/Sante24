@@ -41,24 +41,45 @@ const whyChooseUs = [
 
 const facilityImages = [
   {
-    src: 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&q=80',
-    alt: 'Reception area of Santé 24hr Medical Centre, Southerton, Harare',
-    label: 'Reception',
+    src: '/images/sante/sante24-exterior-building-signage-blue-sky.jpg',
+    alt: 'Santé 24hr Medical Centre & Maternity Hospital exterior, Southerton, Harare',
+    label: 'Our Facility — Southerton, Harare',
   },
   {
-    src: 'https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=600&q=80',
-    alt: 'Observation and procedure room at Santé 24hr Medical Centre',
-    label: 'Procedure & Observation Room',
+    src: '/images/sante/sante24-maternity-hospital-directional-signage.jpg',
+    alt: 'Santé 24 Maternity Hospital internal directional signage, Harare',
+    label: 'Maternity & Antenatal Unit',
   },
   {
-    src: 'https://images.unsplash.com/photo-1578496479914-7ef3b0193be3?w=600&q=80',
-    alt: 'Operating theatre at Santé 24hr Medical Centre, Harare',
-    label: 'Operating Theatre',
+    src: '/images/sante/sante24-operating-theatre-surgical-table-wide.jpg',
+    alt: 'Santé 24 operating theatre with surgical table and anaesthesia equipment',
+    label: 'Fully Equipped Operating Theatre',
   },
   {
-    src: 'https://images.unsplash.com/photo-1581056771107-24ca5f033842?w=600&q=80',
-    alt: 'Ultrasound scanning room at Santé 24 Maternity Hospital',
-    label: 'Ultrasound Suite',
+    src: '/images/sante/sante24-operating-theatre-surgical-lights-ceiling.jpg',
+    alt: 'Multi-head surgical operating lights in the Santé 24 operating theatre',
+    label: 'Multi-Head Surgical Operating Lights',
+  },
+  {
+    src: '/images/sante/sante24-xray-control-panel-digital-touchscreen.jpg',
+    alt: 'Santé 24 digital X-ray control panel, VENMED radiography system',
+    label: 'Digital Radiography System',
+  },
+  {
+    src: '/images/sante/sante24-xray-room-wide-machine-workstation.jpg',
+    alt: 'Santé 24 X-ray room with VENMED machine and patient examination bed',
+    label: 'X-Ray & Radiology Department',
+  },
+  {
+    src: '/images/sante/sante24-medical-gas-alarm-panel-oxygen-monitor.jpg',
+    alt: 'Medical gas alarm panel and oxygen monitoring system at Santé 24',
+    label: 'Medical Gas Monitoring System',
+  },
+  {
+    src: '/images/sante/sante24-theatre-laparoscopy-tower-vision-screen.jpg',
+    alt: 'Laparoscopy tower and vision screen in the Santé 24 operating theatre',
+    label: 'Laparoscopic Surgery Equipment',
+    portrait: true,
   },
 ]
 
@@ -113,15 +134,13 @@ export default function AboutPage() {
             >
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <Image
-                  src="https://imgs.search.brave.com/qfJWffup35ABFZmvhcQqdY_ZgQM2yMfusXOCQJn5OgE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTc2/NjYwMzI5Ni9waG90/by9ibGFjay13b21h/bi1wYXRpZW50LWFu/ZC1kb2N0b3Itd2l0/aC1zbWlsZS1jb25z/dWx0YXRpb24tYW5k/LWhlYXJ0LWVtb2pp/LWZvci1jYXJkaW8t/aGVhbHRoLmpwZz9z/PTYxMng2MTImdz0w/Jms9MjAmYz1ndTVx/Yy1FeTVsRDNSQkpI/dU5hZnRGYXliZDcz/OFc5QlFZejNNT1NK/SlVRPQ"
-                  alt="Medical team at Santé 24hr Medical Centre, Southerton, Harare"
+                  src="/images/sante/sante24-maternity-hospital-directional-signage.jpg"
+                  alt="Santé 24 Maternity Hospital internal directional signage, Harare"
                   width={900}
-                  height={600}
-                  className="w-full h-[350px] md:h-[400px] object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src =
-                      'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=80'
-                  }}
+                  height={675}
+                  quality={85}
+                  sizes="(min-width: 1024px) 576px, 100vw"
+                  className="w-full h-[350px] md:h-[400px] object-cover object-center"
                 />
               </div>
             </motion.div>
@@ -253,30 +272,32 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4">
             {facilityImages.map((img, index) => (
               <motion.div
                 key={img.label}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative group rounded-2xl overflow-hidden"
+                transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
+                className="relative group rounded-2xl overflow-hidden mb-4 break-inside-avoid"
               >
                 <Image
                   src={img.src}
                   alt={img.alt}
-                  width={600}
-                  height={450}
+                  width={img.portrait ? 600 : 800}
+                  height={800}
+                  quality={85}
                   loading="lazy"
-                  className="w-full h-[200px] md:h-[240px] object-cover group-hover:scale-105 transition-transform duration-500"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src =
-                      'https://images.unsplash.com/photo-1666214280557-f1b5022eb634?w=600&q=80'
-                  }}
+                  sizes="(min-width: 1024px) 368px, (min-width: 640px) 50vw, 100vw"
+                  className={`w-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ${
+                    img.portrait ? 'h-[420px] md:h-[520px]' : 'h-[240px] md:h-[280px]'
+                  }`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#003366]/70 to-transparent" />
-                <p className="absolute bottom-3 left-3 text-white font-medium text-sm">{img.label}</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#003366]/80 via-[#003366]/10 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300" />
+                <p className="absolute bottom-3 left-4 right-4 text-white font-medium text-sm md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-300">
+                  {img.label}
+                </p>
               </motion.div>
             ))}
           </div>

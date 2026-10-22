@@ -73,6 +73,7 @@ export function BlogPreview() {
                 <Link href={`/blog/${post.id}`}>
                   <div className="relative rounded-2xl overflow-hidden mb-4">
                     <Image
+                      unoptimized
                       src={post.image}
                       alt={post.title}
                       width={800}

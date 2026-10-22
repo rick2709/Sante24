@@ -90,7 +90,7 @@ export default function BlogPage() {
           <div className="mx-auto max-w-7xl px-6">
             <Link href={`/blog/${featured.id}`} className="group grid overflow-hidden rounded-2xl border border-gray-200 bg-white md:grid-cols-2 hover:shadow-xl transition-all duration-300">
               <div className="relative h-72 overflow-hidden md:h-auto">
-                <Image src={featured.image} alt={featured.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                <Image unoptimized src={featured.image} alt={featured.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute top-4 left-4">
                   <span className="rounded-full bg-[#00B4A6] px-3 py-1 text-xs font-bold text-white">
                     Featured
@@ -152,7 +152,7 @@ export default function BlogPage() {
                   >
                     <article>
                       <div className="relative h-52 overflow-hidden">
-                        <Image src={post.image} alt={post.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <Image unoptimized src={post.image} alt={post.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                         <div className="absolute top-4 left-4">
                           <span className={`rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wide ${CAT_COLORS[post.category] || 'bg-gray-100 text-gray-700'}`}>
                             {post.category}

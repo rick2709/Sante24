@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Clock, CalendarCheck, ShieldCheck, Heart } from 'lucide-react'
 
 const stats = [
@@ -12,8 +13,20 @@ const stats = [
 
 export function StatsBanner() {
   return (
-    <section className="bg-[#003366] py-16 mt-20">
-      <div className="max-w-6xl mx-auto px-4 md:px-6">
+    <section className="relative overflow-hidden bg-[#003366] py-16 mt-20">
+      {/* Blurred, darkened onsite photo for a clinical, high-tech feel */}
+      <Image
+        src="/images/sante/sante24-medical-gas-alarm-panel-oxygen-monitor.jpg"
+        alt=""
+        aria-hidden="true"
+        fill
+        quality={85}
+        loading="lazy"
+        sizes="100vw"
+        className="object-cover object-center blur-sm scale-110"
+      />
+      <div className="absolute inset-0 bg-[#003366]/85" />
+      <div className="relative max-w-6xl mx-auto px-4 md:px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => {
             const Icon = stat.icon
